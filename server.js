@@ -181,7 +181,7 @@ async function sendAliSms(phone, code) {
 }
 
 // ===== 短信 API =====
-app.post('/send-sms', async (req, res) => {
+app.post('/api/send-sms', async (req, res) => {
   const { phone } = req.body;
   if (!/^1[3-9]\d{9}$/.test(phone)) {
     return res.status(400).json({ success: false, message: '手机号格式错误' });
@@ -204,7 +204,7 @@ app.post('/send-sms', async (req, res) => {
   }
 });
 
-app.post('/verify-sms', (req, res) => {
+app.post('/api/verify-sms', (req, res) => {
   const { phone, code, timestamp, signature } = req.body;
   if (timestamp && signature) {
     if (verifySignedCode(phone, code, timestamp, signature)) {
@@ -378,15 +378,15 @@ app.post('/api/marks/:phone', async (req, res) => {
 });
 
 // 健康检查
-app.get('/status', (req, res) => {
+app.get('/api/status', (req, res) => {
   res.json({
     status: 'ok',
     service: '航空知识测验 · 后端服务',
     smsMode: isMockMode ? 'mock' : 'real',
     storage: redis ? 'upstash-redis' : 'local-file',
     endpoints: {
-      'POST /send-sms': '发送验证码',
-      'POST /verify-sms': '验证验证码',
+      'POST /api/send-sms': '发送验证码',
+      'POST /api/verify-sms': '验证验证码',
       'POST /api/register': '注册',
       'POST /api/login-pwd': '密码登录',
       'GET /api/user/:phone': '查询用户',
