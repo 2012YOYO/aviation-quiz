@@ -1,14 +1,9 @@
 {
-  "functions": {
-    "server.js": {
-      "runtime": "@vercel/node"
-    }
-  },
   "rewrites": [
-    { "source": "/send-sms", "destination": "/server.js" },
-    { "source": "/verify-sms", "destination": "/server.js" },
-    { "source": "/status", "destination": "/server.js" },
-    { "source": "/api/(.*)", "destination": "/server.js" },
-    { "source": "/((?!server\\.js).*)", "destination": "/aviation_quiz.html" }
+    { "source": "/send-sms", "destination": "/api/index" },
+    { "source": "/verify-sms", "destination": "/api/index" },
+    { "source": "/status", "destination": "/api/index" },
+    { "source": "/api/(.*)", "destination": "/api/index" },
+    { "source": "/((?!api|send-sms|verify-sms|status).*)", "destination": "/aviation_quiz.html" }
   ]
 }
