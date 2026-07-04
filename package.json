@@ -1,0 +1,17 @@
+{
+  "name": "aerospace-tech-quiz",
+  "version": "1.0.0",
+  "description": "航空知识测验 - 短信验证码后端",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@upstash/redis": "^1.38.0",
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

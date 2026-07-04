@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "server.js", "use": "@vercel/node" }
+  ],
+  "rewrites": [
+    { "source": "/send-sms", "destination": "/server.js" },
+    { "source": "/verify-sms", "destination": "/server.js" },
+    { "source": "/status", "destination": "/server.js" },
+    { "source": "/api/(.*)", "destination": "/server.js" },
+    { "source": "/(.*)", "destination": "/aviation_quiz.html" }
+  ]
+}

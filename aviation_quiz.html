@@ -1,0 +1,3211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>航空知识核心考点测验 · 深度扩展版</title>
+<style>
+:root{
+  --primary:#1a56db;
+  --primary-dark:#1e40af;
+  --primary-light:#dbeafe;
+  --accent:#0ea5e9;
+  --bg:#f1f5f9;
+  --card:#ffffff;
+  --text:#1e293b;
+  --text-muted:#64748b;
+  --border:#e2e8f0;
+  --success:#16a34a;
+  --success-light:#dcfce7;
+  --danger:#dc2626;
+  --danger-light:#fee2e2;
+  --warning:#d97706;
+  --warning-light:#fef3c7;
+  --shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);
+  --shadow-lg:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(135deg,#e0f2fe 0%,#f1f5f9 50%,#ede9fe 100%);
+  color:var(--text);
+  min-height:100vh;
+  line-height:1.6;
+}
+.hidden{display:none !important;}
+
+/* ===== 开始页 ===== */
+#startPage{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+.start-card{
+  background:var(--card);
+  border-radius:24px;
+  box-shadow:var(--shadow-lg);
+  padding:48px 40px;
+  max-width:640px;
+  width:100%;
+  text-align:center;
+}
+.start-icon{
+  font-size:64px;
+  margin-bottom:16px;
+}
+.start-card h1{
+  font-size:28px;
+  color:var(--primary-dark);
+  margin-bottom:12px;
+}
+.start-card .subtitle{
+  color:var(--text-muted);
+  font-size:15px;
+  margin-bottom:28px;
+}
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-bottom:28px;
+}
+.info-box{
+  background:var(--primary-light);
+  border-radius:12px;
+  padding:16px 8px;
+}
+.info-box .num{font-size:24px;font-weight:700;color:var(--primary-dark);}
+.info-box .lbl{font-size:12px;color:var(--text-muted);margin-top:4px;}
+.chapter-list{
+  text-align:left;
+  background:#f8fafc;
+  border-radius:12px;
+  padding:20px;
+  margin-bottom:28px;
+}
+.chapter-list h3{font-size:14px;color:var(--text-muted);margin-bottom:10px;}
+.chapter-list ul{list-style:none;}
+.chapter-list li{
+  padding:6px 0;
+  font-size:14px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+}
+.chapter-list li:last-child{border-bottom:none;}
+.chapter-list li .cnt{color:var(--primary);font-weight:600;}
+.btn-primary{
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  color:#fff;
+  border:none;
+  padding:16px 48px;
+  border-radius:12px;
+  font-size:17px;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow:var(--shadow);
+  transition:all .2s;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);}
+.btn-primary:active{transform:translateY(0);}
+
+/* ===== 答题页 ===== */
+#quizPage{
+  min-height:100vh;
+  padding:0;
+}
+.quiz-header{
+  background:var(--card);
+  box-shadow:var(--shadow);
+  padding:14px 24px;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.progress-bar-wrap{
+  background:var(--border);
+  height:6px;
+  border-radius:3px;
+  overflow:hidden;
+  margin-bottom:8px;
+}
+.progress-bar{
+  height:100%;
+  background:linear-gradient(90deg,var(--primary),var(--accent));
+  border-radius:3px;
+  transition:width .3s;
+}
+.quiz-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:13px;
+  color:var(--text-muted);
+}
+.quiz-meta .chapter-tag{
+  background:var(--primary-light);
+  color:var(--primary-dark);
+  padding:2px 10px;
+  border-radius:10px;
+  font-size:12px;
+  font-weight:600;
+}
+.btn-exit{
+  background:#fff0f0;
+  border:1.5px solid #ef4444;
+  color:#dc2626;
+  padding:5px 14px;
+  border-radius:6px;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  transition:all .15s;
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+}
+.btn-exit::before{content:'✕';font-size:12px;}
+.btn-exit:hover{
+  background:#dc2626;
+  border-color:#dc2626;
+  color:#fff;
+}
+.quiz-body{
+  max-width:760px;
+  margin:0 auto;
+  padding:28px 20px 120px;
+}
+.q-number{
+  font-size:13px;
+  color:var(--accent);
+  font-weight:700;
+  letter-spacing:1px;
+  margin-bottom:8px;
+}
+.q-text{
+  font-size:18px;
+  font-weight:600;
+  margin-bottom:20px;
+  line-height:1.5;
+}
+.q-trap{
+  display:inline-block;
+  background:var(--warning-light);
+  color:var(--warning);
+  font-size:12px;
+  padding:2px 8px;
+  border-radius:6px;
+  margin-left:6px;
+  font-weight:600;
+  vertical-align:middle;
+}
+.mark-btn{
+  display:inline-flex;align-items:center;gap:4px;
+  background:transparent;border:1px solid var(--border);
+  color:var(--text-muted);padding:4px 10px;border-radius:8px;
+  font-size:12px;cursor:pointer;transition:all .15s;margin-left:auto;
+}
+.mark-btn:hover{border-color:var(--warning);color:var(--warning);}
+.mark-btn.marked{border-color:var(--warning);color:var(--warning);background:var(--warning-light);}
+.mark-btn .star{font-size:14px;}
+.q-header{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.options{display:flex;flex-direction:column;gap:12px;}
+.option{
+  background:var(--card);
+  border:2px solid var(--border);
+  border-radius:12px;
+  padding:14px 18px;
+  cursor:pointer;
+  transition:all .15s;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:15px;
+}
+.option:hover{border-color:var(--primary);background:var(--primary-light);}
+.option.selected{
+  border-color:var(--primary);
+  background:var(--primary-light);
+}
+.option .opt-label{
+  width:30px;height:30px;
+  border-radius:50%;
+  background:var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:14px;
+  flex-shrink:0;
+  transition:all .15s;
+}
+.option.selected .opt-label{background:var(--primary);color:#fff;}
+.quiz-nav{
+  display:flex;
+  justify-content:space-between;
+  margin-top:28px;
+  gap:12px;
+}
+.btn-nav{
+  background:var(--card);
+  border:2px solid var(--border);
+  color:var(--text);
+  padding:12px 28px;
+  border-radius:10px;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  transition:all .15s;
+}
+.btn-nav:hover:not(:disabled){border-color:var(--primary);color:var(--primary);}
+.btn-nav:disabled{opacity:.4;cursor:not-allowed;}
+.btn-nav.submit-btn{
+  background:linear-gradient(135deg,#16a34a,#22c55e);
+  color:#fff;border-color:transparent;
+}
+.question-grid{
+  max-width:760px;
+  margin:16px auto 0;
+  padding:0 20px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.q-dot{
+  width:32px;height:32px;
+  border-radius:8px;
+  border:1px solid var(--border);
+  background:var(--card);
+  font-size:12px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  transition:all .15s;
+}
+.q-dot.answered{background:var(--primary);color:#fff;border-color:var(--primary);}
+.q-dot.current{box-shadow:0 0 0 3px var(--primary-light);border-color:var(--primary);}
+
+/* ===== 结果页 ===== */
+#resultPage{
+  min-height:100vh;
+  padding:32px 20px;
+}
+.result-container{max-width:880px;margin:0 auto;}
+.result-card{
+  background:var(--card);
+  border-radius:24px;
+  box-shadow:var(--shadow-lg);
+  padding:40px;
+  text-align:center;
+  margin-bottom:24px;
+}
+.score-circle{
+  width:160px;height:160px;
+  border-radius:50%;
+  margin:0 auto 20px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  position:relative;
+}
+.score-circle::before{
+  content:"";
+  position:absolute;inset:0;
+  border-radius:50%;
+  background:conic-gradient(var(--primary) var(--pct),var(--border) 0);
+}
+.score-circle::after{
+  content:"";
+  position:absolute;inset:12px;
+  border-radius:50%;
+  background:var(--card);
+}
+.score-circle .score-val{position:relative;z-index:1;font-size:42px;font-weight:800;color:var(--primary-dark);}
+.score-circle .score-max{position:relative;z-index:1;font-size:14px;color:var(--text-muted);}
+.result-card h2{font-size:24px;margin-bottom:8px;}
+.result-msg{color:var(--text-muted);font-size:15px;margin-bottom:24px;}
+.result-stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:24px;
+}
+.stat-box{
+  background:#f8fafc;
+  border-radius:12px;
+  padding:14px 8px;
+}
+.stat-box .val{font-size:22px;font-weight:700;}
+.stat-box .lbl{font-size:12px;color:var(--text-muted);margin-top:2px;}
+.stat-box.correct .val{color:var(--success);}
+.stat-box.wrong .val{color:var(--danger);}
+.stat-box.skipped .val{color:var(--text-muted);}
+.stat-box.time .val{color:var(--accent);}
+.result-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+
+.review-section{
+  background:var(--card);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  padding:28px;
+  margin-bottom:24px;
+}
+.review-section h3{font-size:18px;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--border);}
+.review-filter{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.filter-btn{
+  border:1px solid var(--border);
+  background:var(--card);
+  padding:6px 16px;
+  border-radius:20px;
+  font-size:13px;
+  cursor:pointer;
+  transition:all .15s;
+}
+.filter-btn.active{background:var(--primary);color:#fff;border-color:var(--primary);}
+.filter-btn:hover:not(.active){border-color:var(--primary);color:var(--primary);}
+.review-item{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:18px;
+  margin-bottom:14px;
+}
+.review-item.wrong{border-left:4px solid var(--danger);background:#fff5f5;}
+.review-item.correct{border-left:4px solid var(--success);background:#f0fdf4;}
+.review-item.skipped{border-left:4px solid var(--text-muted);background:#f8fafc;}
+.review-q{font-weight:600;margin-bottom:12px;font-size:15px;}
+.review-q .tag{
+  font-size:11px;padding:1px 8px;border-radius:8px;margin-right:6px;font-weight:600;
+}
+.review-options{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;}
+.review-opt{
+  padding:8px 12px;border-radius:8px;font-size:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.review-opt.correct-opt{background:var(--success-light);color:var(--success);font-weight:600;}
+.review-opt.user-wrong{background:var(--danger-light);color:var(--danger);text-decoration:line-through;}
+.review-opt.user-right{background:var(--success-light);color:var(--success);font-weight:600;}
+.review-explain{
+  background:#eff6ff;
+  border-radius:8px;
+  padding:10px 14px;
+  font-size:13px;
+  color:#1e40af;
+  line-height:1.6;
+}
+.review-explain .label{font-weight:700;}
+.review-item.marked-review{border:2px solid var(--warning);}
+.review-mark-btn{
+  display:inline-flex;align-items:center;gap:4px;
+  background:transparent;border:1px solid var(--border);
+  color:var(--text-muted);padding:3px 10px;border-radius:8px;
+  font-size:12px;cursor:pointer;transition:all .15s;float:right;
+}
+.review-mark-btn:hover{border-color:var(--warning);color:var(--warning);}
+.review-mark-btn.marked{border-color:var(--warning);color:var(--warning);background:var(--warning-light);}
+.review-mark-btn .star{font-size:13px;}
+.mark-tag{
+  display:inline-block;background:var(--warning-light);color:var(--warning);
+  font-size:11px;padding:1px 8px;border-radius:8px;margin-right:6px;font-weight:600;
+}
+
+/* ===== 趋势图 ===== */
+.trend-section{
+  background:var(--card);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  padding:28px;
+  margin-bottom:24px;
+}
+.trend-section h3{
+  font-size:18px;margin-bottom:6px;
+  display:flex;align-items:center;gap:8px;
+}
+.trend-section .trend-sub{font-size:13px;color:var(--text-muted);margin-bottom:18px;}
+.trend-stats-row{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:20px;
+}
+.trend-stat{
+  background:#f8fafc;
+  border-radius:12px;
+  padding:14px 10px;
+  text-align:center;
+}
+.trend-stat .val{font-size:22px;font-weight:700;}
+.trend-stat .lbl{font-size:11px;color:var(--text-muted);margin-top:2px;}
+.trend-stat.best .val{color:var(--success);}
+.trend-stat.avg .val{color:var(--accent);}
+.trend-stat.latest .val{color:var(--primary);}
+.trend-stat.attempts .val{color:var(--warning);}
+#trendChart,#startTrendChart{
+  width:100%;
+  height:260px;
+  display:block;
+}
+.trend-empty{
+  text-align:center;
+  padding:40px 20px;
+  color:var(--text-muted);
+  font-size:14px;
+}
+.trend-empty .icon{font-size:48px;margin-bottom:12px;}
+.trend-history{
+  margin-top:16px;
+  max-height:200px;
+  overflow-y:auto;
+}
+.trend-history table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
+}
+.trend-history th{
+  text-align:left;
+  padding:8px 10px;
+  background:#f1f5f9;
+  color:var(--text-muted);
+  font-weight:600;
+  position:sticky;
+  top:0;
+}
+.trend-history td{
+  padding:8px 10px;
+  border-bottom:1px solid var(--border);
+}
+.trend-history tr:hover td{background:#f8fafc;}
+.score-badge{
+  display:inline-block;
+  padding:2px 10px;
+  border-radius:10px;
+  font-weight:700;
+  font-size:12px;
+}
+.score-badge.high{background:var(--success-light);color:var(--success);}
+.score-badge.mid{background:var(--warning-light);color:var(--warning);}
+.score-badge.low{background:var(--danger-light);color:var(--danger);}
+.clear-history-btn{
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--danger);
+  padding:6px 16px;
+  border-radius:20px;
+  font-size:12px;
+  cursor:pointer;
+  transition:all .15s;
+  margin-top:12px;
+}
+.clear-history-btn:hover{background:var(--danger-light);border-color:var(--danger);}
+.delta-arrow{
+  font-size:12px;
+  font-weight:700;
+  margin-left:4px;
+}
+.delta-arrow.up{color:var(--success);}
+.delta-arrow.down{color:var(--danger);}
+.delta-arrow.flat{color:var(--text-muted);}
+
+/* ===== 章节选择 ===== */
+.chapter-select{text-align:left;margin-bottom:28px;}
+.chapter-select h3{font-size:14px;color:var(--text-muted);margin-bottom:12px;}
+.chap-buttons{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  max-height:380px;
+  overflow-y:auto;
+  padding-right:4px;
+}
+.chap-btn{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  background:#f8fafc;
+  border:2px solid var(--border);
+  border-radius:10px;
+  padding:10px 14px;
+  cursor:pointer;
+  transition:all .15s;
+  font-size:13px;
+  text-align:left;
+  font-family:inherit;
+}
+.chap-btn:hover{border-color:var(--primary);background:var(--primary-light);}
+.chap-btn .chap-name{color:var(--text);font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.chap-btn .chap-cnt{color:var(--primary);font-weight:700;font-size:12px;flex-shrink:0;white-space:nowrap;}
+.chap-btn.chap-all{
+  grid-column:1/-1;
+  background:linear-gradient(135deg,var(--primary-light),#ede9fe);
+  border-color:var(--primary);
+}
+.chap-btn.chap-all .chap-name{color:var(--primary-dark);font-weight:700;font-size:15px;}
+.chap-btn.chap-all .chap-cnt{font-size:14px;}
+
+/* ===== 答题页侧边栏布局 ===== */
+.quiz-layout{display:flex;min-height:100vh;}
+.quiz-sidebar{
+  width:220px;
+  flex-shrink:0;
+  background:var(--card);
+  box-shadow:2px 0 8px rgba(0,0,0,.06);
+  padding:16px 12px;
+  overflow-y:auto;
+  position:sticky;
+  top:0;
+  max-height:100vh;
+  z-index:50;
+}
+.quiz-sidebar h4{
+  font-size:12px;
+  color:var(--text-muted);
+  margin-bottom:10px;
+  padding-bottom:8px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.quiz-sidebar h4 .sidebar-count{
+  background:var(--primary-light);
+  color:var(--primary-dark);
+  padding:1px 8px;
+  border-radius:8px;
+  font-size:11px;
+  font-weight:700;
+}
+.sidebar-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:5px;
+}
+.sidebar-dot{
+  aspect-ratio:1;
+  border-radius:8px;
+  border:1px solid var(--border);
+  background:var(--card);
+  font-size:11px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  transition:all .15s;
+  font-weight:600;
+  color:var(--text-muted);
+}
+.sidebar-dot:hover{border-color:var(--primary);}
+.sidebar-dot.marked::after{
+  content:"";
+  position:absolute;top:2px;right:2px;
+  width:6px;height:6px;border-radius:50%;
+  background:var(--warning);
+}
+.sidebar-dot{position:relative;}
+.sidebar-dot.answered{background:var(--primary);color:#fff;border-color:var(--primary);}
+.sidebar-dot.current{box-shadow:0 0 0 3px var(--primary-light);border-color:var(--primary);transform:scale(1.08);}
+.quiz-main{flex:1;min-width:0;display:flex;flex-direction:column;}
+.quiz-main .quiz-header{position:sticky;top:0;z-index:40;}
+.quiz-main .quiz-body{max-width:720px;margin:0 auto;padding:28px 24px 120px;flex:1;}
+
+@media(max-width:900px){
+  .quiz-sidebar{width:160px;padding:12px 8px;}
+  .sidebar-grid{grid-template-columns:repeat(4,1fr);}
+  .quiz-main .quiz-body{padding:20px 16px 100px;}
+}
+@media(max-width:600px){
+  .start-card{padding:32px 20px;}
+  .info-grid{grid-template-columns:1fr;}
+  .result-stats{grid-template-columns:repeat(2,1fr);}
+  .result-card,.review-section{padding:20px;}
+  .q-text{font-size:16px;}
+  .chap-buttons{grid-template-columns:1fr;}
+  .quiz-layout{flex-direction:column;}
+  .quiz-sidebar{
+    width:100%;
+    max-height:none;
+    position:relative;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+    padding:10px 12px;
+  }
+  .sidebar-grid{grid-template-columns:repeat(10,1fr);}
+  .quiz-main .quiz-body{padding:16px 14px 100px;}
+}
+  .start-card{padding:32px 20px;}
+  .info-grid{grid-template-columns:1fr;}
+  .result-stats{grid-template-columns:repeat(2,1fr);}
+  .result-card,.review-section{padding:20px;}
+  .q-text{font-size:16px;}
+  .quiz-body{padding:20px 14px 100px;}
+}
+
+/* ===== 登录页 ===== */
+#loginPage{
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  width:100vw;
+  height:100vh;
+  height:100dvh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#eff6ff 0%,#f0fdf4 50%,#fef3c7 100%);
+  z-index:9999;
+  overflow:auto;
+}
+#loginPage.hidden{
+  display:none !important;
+}
+/* ===== 图片验证码 ===== */
+.captcha-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:4px;
+}
+.captcha-canvas{
+  border:2px solid var(--border);
+  border-radius:8px;
+  cursor:pointer;
+  background:#f8fafc;
+  flex-shrink:0;
+}
+.captcha-canvas:hover{border-color:var(--primary);}
+.captcha-refresh{
+  background:none;
+  border:1.5px solid var(--border);
+  border-radius:8px;
+  padding:6px 10px;
+  cursor:pointer;
+  font-size:12px;
+  color:var(--text-muted);
+  transition:all .15s;
+  white-space:nowrap;
+}
+.captcha-refresh:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-light);}
+.captcha-err{color:var(--danger);font-size:12px;margin-top:2px;min-height:16px;}
+
+/* ===== 滑块验证 ===== */
+.slider-track{position:relative;height:44px;background:var(--card-bg);border:2px solid var(--border);border-radius:10px;overflow:hidden;user-select:none;cursor:default;}
+.slider-bg{position:absolute;left:0;top:0;height:100%;width:0;background:linear-gradient(90deg,var(--primary),#6366f1);border-radius:8px;transition:background 0.2s;}
+.slider-text{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:14px;color:#94a3b8;z-index:1;pointer-events:none;transition:opacity 0.2s;}
+.slider-btn{position:absolute;left:0;top:0;width:44px;height:40px;background:#fff;border:2px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--primary);cursor:pointer;z-index:2;box-shadow:0 2px 6px rgba(0,0,0,0.08);transition:transform 0.1s,background 0.2s;}
+.slider-btn:active{transform:scale(0.95);background:var(--primary-light);}
+.slider-track.success{border-color:#22c55e;}
+.slider-track.success .slider-bg{background:#22c55e;}
+.slider-track.success .slider-btn{border-color:#22c55e;color:#22c55e;}
+.slider-track.success .slider-text{opacity:0;}
+.slider-track.fail{border-color:#ef4444;animation:shake 0.4s ease;}
+.slider-track.fail .slider-btn{left:0!important;transition:left 0.4s ease;}
+.slider-err{color:var(--danger);font-size:12px;margin-top:2px;min-height:16px;}
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+
+/* ===== 登录/注册标签 ===== */
+.auth-tabs{display:flex;gap:4px;margin:0 24px 20px;padding:4px;background:var(--card-bg);border-radius:12px;border:1.5px solid var(--border);}
+.auth-tab{flex:1;text-align:center;padding:10px 0;font-size:15px;font-weight:600;color:var(--text-muted);cursor:pointer;border-radius:10px;transition:all 0.2s;}
+.auth-tab.active{background:#fff;color:var(--primary);box-shadow:0 2px 8px rgba(37,99,235,0.12);border:1.5px solid var(--primary);}
+.auth-tab:hover:not(.active){color:var(--text);}
+
+/* ===== 登录子标签 ===== */
+.sub-tabs{display:flex;gap:4px;margin-bottom:16px;padding:3px;background:var(--card-bg);border-radius:10px;border:1.5px solid var(--border);}
+.sub-tab{flex:1;text-align:center;padding:8px 0;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;border-radius:8px;transition:all 0.2s;}
+.sub-tab.active{background:var(--primary-light);color:var(--primary);font-weight:600;}
+.sub-tab:hover:not(.active){color:var(--text);}
+
+/* ===== 步骤指示器 ===== */
+.step-indicator{display:flex;align-items:center;justify-content:center;margin-bottom:20px;padding:0 12px;}
+.step{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--card-bg);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--text-muted);transition:all 0.3s;}
+.step.active .step-num{background:var(--primary);border-color:var(--primary);color:#fff;}
+.step-label{font-size:11px;color:var(--text-muted);transition:color 0.3s;}
+.step.active .step-label{color:var(--primary);font-weight:500;}
+.step-line{flex:1;height:2px;min-width:40px;max-width:80px;background:var(--border);margin:0 8px;position:relative;top:-8px;}
+
+/* ===== 返回按钮 ===== */
+.btn-back{width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:10px;background:transparent;color:var(--text);font-size:15px;cursor:pointer;transition:all 0.2s;}
+.btn-back:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-light);}
+
+/* ===== 模拟短信界面 ===== */
+.sms-sim-box{
+  background:#0f172a;
+  border-radius:16px;
+  padding:14px 14px 12px;
+  color:#e2e8f0;
+  font-size:13px;
+  margin-bottom:14px;
+  display:none;
+}
+.sms-sim-box.show{display:block;}
+.sms-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:8px;
+  font-size:11px;
+  color:#94a3b8;
+  border-bottom:1px solid #334155;
+  padding-bottom:6px;
+}
+.sms-sender{color:#38bdf8;font-weight:600;}
+.sms-body{
+  background:#1e293b;
+  border-radius:10px;
+  padding:12px;
+  font-size:22px;
+  letter-spacing:6px;
+  text-align:center;
+  color:#fbbf24;
+  font-weight:700;
+  border:1px solid #334155;
+  font-family:'Consolas','Courier New',monospace;
+}
+.sms-hint{font-size:11px;color:#64748b;margin-top:6px;text-align:center;}
+
+.login-card{
+  background:var(--card);
+  border-radius:24px;
+  box-shadow:var(--shadow-lg);
+  padding:48px 40px;
+  max-width:440px;
+  width:90%;
+  text-align:center;
+  animation:fadeInUp .4s ease;
+}
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* ===== 图片验证码 ===== */
+.captcha-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:14px;
+}
+.captcha-canvas{
+  border:2px solid var(--border);
+  border-radius:8px;
+  cursor:pointer;
+  background:#f8fafc;
+  flex-shrink:0;
+}
+.captcha-canvas:hover{border-color:var(--primary);}
+.captcha-refresh{
+  background:none;
+  border:1.5px solid var(--border);
+  border-radius:8px;
+  padding:6px 10px;
+  cursor:pointer;
+  font-size:13px;
+  color:var(--text-muted);
+  transition:all .15s;
+  white-space:nowrap;
+}
+.captcha-refresh:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-light);}
+.captcha-err{color:var(--danger);font-size:12px;margin-top:4px;min-height:18px;}
+.sms-info{
+  background:linear-gradient(135deg,#eff6ff,#f0fdf4);
+  border:1.5px solid #bfdbfe;
+  border-radius:10px;
+  padding:10px 14px;
+  font-size:13px;
+  color:var(--primary-dark);
+  margin-bottom:14px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.sms-info .sms-icon{font-size:20px;}
+.sms-sim-box{
+  background:#1e293b;
+  border-radius:16px;
+  padding:16px 14px 14px;
+  color:#e2e8f0;
+  font-size:13px;
+  margin-bottom:14px;
+  display:none;
+  position:relative;
+}
+.sms-sim-box.show{display:block;}
+.sms-sim-box .sms-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+  font-size:11px;
+  color:#94a3b8;
+  border-bottom:1px solid #334155;
+  padding-bottom:8px;
+}
+.sms-sim-box .sms-sender{color:#38bdf8;font-weight:600;}
+.sms-sim-box .sms-body{
+  background:#0f172a;
+  border-radius:10px;
+  padding:12px;
+  font-size:15px;
+  letter-spacing:3px;
+  text-align:center;
+  color:#fbbf24;
+  font-weight:700;
+  border:1px solid #334155;
+}
+.sms-sim-box .sms-hint{font-size:11px;color:#64748b;margin-top:8px;text-align:center;}
+
+/* ===== 管理员面板 ===== */
+.admin-page{
+  max-width:900px;
+  margin:80px auto 40px;
+  padding:0 20px;
+}
+.admin-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:24px;
+}
+.admin-header h2{font-size:22px;color:var(--primary-dark);}
+.admin-header .admin-info{font-size:13px;color:var(--text-muted);}
+.admin-stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:16px;
+  margin-bottom:28px;
+}
+.admin-stat-card{
+  background:var(--card);
+  border-radius:14px;
+  padding:20px;
+  box-shadow:var(--shadow);
+  text-align:center;
+}
+.admin-stat-card .val{font-size:32px;font-weight:800;color:var(--primary);}
+.admin-stat-card .lbl{font-size:13px;color:var(--text-muted);margin-top:4px;}
+.admin-search{
+  background:var(--card);
+  border-radius:14px;
+  padding:16px 20px;
+  box-shadow:var(--shadow);
+  margin-bottom:20px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.admin-search input{
+  flex:1;
+  padding:10px 16px;
+  border:2px solid var(--border);
+  border-radius:10px;
+  font-size:14px;
+  outline:none;
+  font-family:inherit;
+}
+.admin-search input:focus{border-color:var(--primary);}
+.admin-user-card{
+  background:var(--card);
+  border-radius:14px;
+  box-shadow:var(--shadow);
+  margin-bottom:16px;
+  overflow:hidden;
+}
+.admin-user-header{
+  padding:16px 20px;
+  background:linear-gradient(135deg,var(--primary-light),#f0fdf4);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  cursor:pointer;
+  transition:background .15s;
+}
+.admin-user-header:hover{opacity:.9;}
+.admin-user-header .phone{font-weight:700;font-size:15px;color:var(--primary-dark);}
+.admin-user-header .count{font-size:13px;color:var(--text-muted);}
+.admin-user-header .arrow{font-size:18px;color:var(--primary);transition:transform .2s;}
+.admin-user-header .arrow.open{transform:rotate(180deg);}
+.admin-user-body{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .3s ease;
+}
+.admin-user-body.open{max-height:2000px;}
+.admin-history-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
+}
+.admin-history-table th{
+  background:var(--bg);
+  padding:10px 12px;
+  text-align:left;
+  font-weight:600;
+  color:var(--text-muted);
+  font-size:12px;
+  border-bottom:2px solid var(--border);
+}
+.admin-history-table td{
+  padding:10px 12px;
+  border-bottom:1px solid var(--border);
+  vertical-align:middle;
+}
+.admin-history-table tr:hover td{background:var(--primary-light);}
+.admin-score-badge{
+  display:inline-block;
+  padding:2px 10px;
+  border-radius:20px;
+  font-weight:700;
+  font-size:13px;
+}
+.admin-score-badge.high{background:#dcfce7;color:#166534;}
+.admin-score-badge.mid{background:#fef3c7;color:#92400e;}
+.admin-score-badge.low{background:#fee2e2;color:#991b1b;}
+.admin-empty{
+  text-align:center;
+  padding:60px 20px;
+  color:var(--text-muted);
+  font-size:15px;
+}
+.admin-empty .icon{font-size:48px;margin-bottom:12px;}
+.login-card{
+  background:var(--card);
+  border-radius:24px;
+  box-shadow:var(--shadow-lg);
+  padding:48px 40px;
+  max-width:440px;
+  width:100%;
+  text-align:center;
+  position:relative;
+  margin:auto;
+}
+.login-icon{font-size:56px;margin-bottom:16px;}
+.login-card h2{font-size:24px;color:var(--primary-dark);margin-bottom:8px;}
+.login-card .subtitle{color:var(--text-muted);font-size:14px;margin-bottom:28px;}
+.login-form{text-align:left;}
+.login-form .field{margin-bottom:18px;}
+.login-form label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px;}
+.login-form input{
+  width:100%;
+  padding:12px 16px;
+  border:2px solid var(--border);
+  border-radius:10px;
+  font-size:15px;
+  font-family:inherit;
+  transition:border-color .15s;
+  outline:none;
+  box-sizing:border-box;
+}
+.login-form input:focus{border-color:var(--primary);}
+.login-form input.error{border-color:var(--danger);background:#fef2f2;}
+.code-row{
+  display:flex;
+  gap:10px;
+  align-items:flex-end;
+}
+.code-row .field{flex:1;margin-bottom:0;}
+.btn-send-code{
+  flex-shrink:0;
+  padding:12px 16px;
+  background:var(--primary);
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  transition:all .15s;
+  white-space:nowrap;
+  height:44px;
+}
+.btn-send-code:hover{background:var(--primary-dark);}
+.btn-send-code:disabled{background:#94a3b8;cursor:not-allowed;}
+.code-display{
+  margin-top:14px;
+  padding:12px 16px;
+  background:linear-gradient(135deg,#fef3c7,#fde68a);
+  border:2px dashed #f59e0b;
+  border-radius:12px;
+  font-size:15px;
+  color:#92400e;
+  display:none;
+}
+.code-display.show{display:block;}
+.code-display .code-val{
+  font-size:28px;
+  font-weight:800;
+  letter-spacing:6px;
+  color:#b45309;
+  margin:6px 0;
+  font-family:'Courier New',monospace;
+}
+.code-display .code-hint{font-size:12px;color:#b45309;opacity:.8;}
+.login-btn{
+  width:100%;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  color:#fff;
+  border:none;
+  padding:14px;
+  border-radius:12px;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow:var(--shadow);
+  transition:all .2s;
+  margin-top:18px;
+}
+.login-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);}
+.login-btn:active{transform:translateY(0);}
+.login-btn:disabled{background:#94a3b8;cursor:not-allowed;transform:none;box-shadow:none;}
+.login-err{color:var(--danger);font-size:13px;margin-top:12px;min-height:20px;}
+.login-user-bar{
+  background:var(--card);
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+  padding:10px 24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:200;
+}
+.login-user-bar .user-info{font-size:14px;color:var(--text);}
+.login-user-bar .user-info strong{color:var(--primary-dark);}
+.btn-logout{
+  background:transparent;
+  border:1.5px solid #ef4444;
+  color:#dc2626;
+  padding:5px 14px;
+  border-radius:6px;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  transition:all .15s;
+}
+.btn-logout:hover{background:#dc2626;color:#fff;}
+</style>
+</head>
+<body>
+
+<!-- 用户栏（登录后显示） -->
+
+
+<!-- 管理员面板 -->
+<div id="adminPage" class="hidden">
+  <div class="admin-page">
+    <div class="admin-header">
+      <h2>🔧 管理员面板</h2>
+      <div class="admin-info">管理员：<strong id="adminPhoneDisplay"></strong></div>
+    </div>
+    <div class="admin-stats" id="adminStats"></div>
+    <div class="admin-search">
+      <input type="text" id="adminSearch" placeholder="搜索用户名或手机号..." oninput="renderAdminPanel()">
+      <button class="btn-send-code" onclick="renderAdminPanel()" style="height:40px;">刷新</button>
+    </div>
+    <div id="adminUserList"></div>
+  </div>
+</div>
+
+<div id="userBar" class="login-user-bar hidden">
+  <div class="user-info">👤 当前用户：<strong id="currentUserDisplay"></strong></div>
+  <button class="btn-logout" onclick="logout()">退出登录</button>
+</div>
+
+<!-- 登录/注册页 -->
+<div id="loginPage">
+  <div class="login-card">
+    <div class="login-icon">✈️</div>
+    <h2>航空知识测验</h2>
+    <p class="subtitle" id="loginSubtitle">请选择登录或注册</p>
+
+    <!-- 登录/注册标签切换 -->
+    <div class="auth-tabs">
+      <div class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')">登 录</div>
+      <div class="auth-tab" id="tabRegister" onclick="switchAuthTab('register')">注 册</div>
+    </div>
+
+    <!-- ===== 登录区域 ===== -->
+    <div id="loginSection" class="login-form">
+      <!-- 登录子标签 -->
+      <div class="sub-tabs">
+        <div class="sub-tab active" id="subTabPhone" onclick="switchLoginSubTab('phone')">手机验证码</div>
+        <div class="sub-tab" id="subTabPwd" onclick="switchLoginSubTab('pwd')">密码登录</div>
+      </div>
+
+      <!-- 手机验证码登录 -->
+      <div id="loginPhoneForm">
+        <div class="field">
+          <label>📱 手机号</label>
+          <input type="tel" id="lpPhone" placeholder="请输入11位手机号" maxlength="11" inputmode="numeric" onkeydown="if(event.key==='Enter')document.getElementById('lpCode').focus()">
+        </div>
+        <div class="field">
+          <label>📩 短信验证码</label>
+          <div style="display:flex;gap:10px;">
+            <input type="text" id="lpCode" placeholder="请输入6位验证码" maxlength="6" inputmode="numeric" style="flex:1;padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'" onkeydown="if(event.key==='Enter')doPhoneLogin()">
+            <button class="btn-send-code" id="btnSendCode" onclick="sendCode()">发送验证码</button>
+          </div>
+        </div>
+        <div class="login-err" id="loginErr"></div>
+        <button class="login-btn" onclick="doPhoneLogin()">登 录</button>
+      </div>
+
+      <!-- 密码登录 -->
+      <div id="loginPwdForm" class="hidden">
+        <div class="field">
+          <label>👤 用户名</label>
+          <input type="text" id="lpUsername" placeholder="请输入用户名" maxlength="20" style="width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'" onkeydown="if(event.key==='Enter')document.getElementById('lpPassword').focus()">
+        </div>
+        <div class="field">
+          <label>🔒 密码</label>
+          <input type="password" id="lpPassword" placeholder="请输入密码" maxlength="30" style="width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'" onkeydown="if(event.key==='Enter')doPwdLogin()">
+        </div>
+        <div class="login-err" id="loginErr2"></div>
+        <button class="login-btn" onclick="doPwdLogin()">登 录</button>
+      </div>
+    </div>
+
+    <!-- ===== 注册区域 ===== -->
+    <div id="registerSection" class="login-form hidden">
+      <!-- 步骤指示器 -->
+      <div class="step-indicator">
+        <div class="step active" id="regStep1Ind">
+          <div class="step-num">1</div>
+          <div class="step-label">验证手机</div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" id="regStep2Ind">
+          <div class="step-num">2</div>
+          <div class="step-label">设置账户</div>
+        </div>
+      </div>
+
+      <!-- 注册步骤1：验证手机号 -->
+      <div id="regStep1">
+        <div class="field">
+          <label>📱 手机号</label>
+          <input type="tel" id="regPhone" placeholder="请输入11位手机号" maxlength="11" inputmode="numeric" onkeydown="if(event.key==='Enter')document.getElementById('captchaInput').focus()">
+        </div>
+        <div class="field">
+          <label>🖼️ 图片验证码</label>
+          <div class="captcha-row">
+            <canvas id="captchaCanvas" class="captcha-canvas" width="130" height="44"></canvas>
+            <button class="captcha-refresh" onclick="refreshCaptcha()">🔄 换一张</button>
+          </div>
+          <input type="text" id="captchaInput" placeholder="输入图片中的字符（不区分大小写）" maxlength="4" style="width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-size:14px;outline:none;box-sizing:border-box;margin-bottom:4px;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'" oninput="liveCheckCaptcha()" onkeydown="if(event.key==='Enter'){const nxt=document.getElementById('sliderBtn');if(nxt)nxt.focus();}">
+          <div class="captcha-err" id="captchaErr"></div>
+        </div>
+        <div class="field">
+          <label>🎚️ 安全验证</label>
+          <div class="slider-track" id="sliderTrack">
+            <div class="slider-bg" id="sliderBg"></div>
+            <div class="slider-text" id="sliderText">请拖动滑块完成验证</div>
+            <div class="slider-btn" id="sliderBtn">➜</div>
+          </div>
+          <div class="slider-err" id="sliderErr"></div>
+        </div>
+        <div class="field">
+          <label>📩 短信验证码</label>
+          <div style="display:flex;gap:10px;">
+            <input type="text" id="regCode" placeholder="请输入6位验证码" maxlength="6" inputmode="numeric" style="flex:1;padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'" onkeydown="if(event.key==='Enter')nextRegStep()">
+            <button class="btn-send-code" id="btnSendCodeReg" onclick="sendCodeForReg()" disabled>发送验证码</button>
+          </div>
+        </div>
+        <div class="login-err" id="regErr"></div>
+        <button class="login-btn" onclick="nextRegStep()">下一步</button>
+      </div>
+
+      <!-- 注册步骤2：设置用户名密码 -->
+      <div id="regStep2" class="hidden">
+        <div class="field">
+          <label>👤 用户名</label>
+          <input type="text" id="regUsername" placeholder="设置用户名（2-16位字母数字）" maxlength="16" style="width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'" onkeydown="if(event.key==='Enter')document.getElementById('regPassword').focus()">
+        </div>
+        <div class="field">
+          <label>🔒 密码</label>
+          <input type="password" id="regPassword" placeholder="设置密码（6-20位）" maxlength="20" style="width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'" onkeydown="if(event.key==='Enter')document.getElementById('regConfirmPwd').focus()">
+        </div>
+        <div class="field">
+          <label>🔒 确认密码</label>
+          <input type="password" id="regConfirmPwd" placeholder="再次输入密码" maxlength="20" style="width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'" onkeydown="if(event.key==='Enter')doRegister()">
+        </div>
+        <div class="login-err" id="regErr2"></div>
+        <button class="login-btn" onclick="doRegister()">注册并登录</button>
+        <button class="btn-back" onclick="backRegStep()">← 返回上一步</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 开始页 -->
+<div id="startPage">
+  <div class="start-card">
+    <div class="start-icon">✈️</div>
+    <h1>航空知识核心考点测验</h1>
+    <p class="subtitle">深度扩展版 · 涵盖结构与材料、操纵面、飞行原理、航空史、中国航空五大模块</p>
+    <div class="info-grid">
+      <div class="info-box"><div class="num">287</div><div class="lbl">道题目</div></div>
+      <div class="info-box"><div class="num">9</div><div class="lbl">大章节</div></div>
+      <div class="info-box"><div class="num">自选</div><div class="lbl">刷题范围</div></div>
+    </div>
+    <div class="chapter-select">
+      <h3>📋 选择刷题范围（可全刷或只刷单项）</h3>
+      <div class="chap-buttons" id="chapButtons"></div>
+    </div>
+    <div id="startTrendSection" class="trend-section" style="margin-bottom:28px;">
+      <h3>📈 成绩提高趋势</h3>
+      <p class="trend-sub">查看您历次测验的成绩变化，追踪学习进步</p>
+      <div id="startTrendContent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 答题页 -->
+<div id="quizPage" class="hidden">
+  <div class="quiz-layout">
+    <div class="quiz-sidebar">
+      <h4>题号导航 <span class="sidebar-count" id="sidebarAnswered">0/0</span></h4>
+      <div class="sidebar-grid" id="qGrid"></div>
+    </div>
+    <div class="quiz-main">
+      <div class="quiz-header">
+        <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="quiz-meta">
+          <span>第 <strong id="curNum">1</strong> / <strong id="totalNum">0</strong> 题</span>
+          <span class="chapter-tag" id="curChapter">章节</span>
+          <span>已答 <strong id="answeredCount">0</strong> <button class="btn-exit" onclick="exitQuiz()">退出</button></span>
+        </div>
+      </div>
+      <div class="quiz-body" id="quizBody"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 结果页 -->
+<div id="resultPage" class="hidden">
+  <div class="result-container">
+    <div class="result-card">
+      <div class="score-circle" id="scoreCircle">
+        <span class="score-val" id="finalScore">0</span>
+        <span class="score-max" id="scoreMax">/ 0题</span>
+      </div>
+      <h2 id="resultTitle">测验完成！</h2>
+      <p class="result-msg" id="resultMsg"></p>
+      <div class="result-stats">
+        <div class="stat-box correct"><div class="val" id="rightCount">0</div><div class="lbl">答对</div></div>
+        <div class="stat-box wrong"><div class="val" id="wrongCount">0</div><div class="lbl">答错</div></div>
+        <div class="stat-box skipped"><div class="val" id="skipCount">0</div><div class="lbl">未答</div></div>
+        <div class="stat-box time"><div class="val" id="usedTime">0</div><div class="lbl">用时(分)</div></div>
+      </div>
+      <div class="result-actions">
+        <button class="btn-primary" onclick="retryChapter()">重做本章</button>
+        <button class="btn-nav" onclick="restartQuiz()">返回选题</button>
+        <button class="btn-nav" onclick="scrollToReview()">查看解析</button>
+      </div>
+    </div>
+    <div class="trend-section">
+      <h3>📈 成绩提高趋势</h3>
+      <p class="trend-sub">本次成绩与历次对比，追踪您的学习进步轨迹</p>
+      <div class="trend-stats-row" id="trendStatsRow"></div>
+      <canvas id="trendChart"></canvas>
+      <div class="trend-history" id="trendHistory"></div>
+      <button class="clear-history-btn" onclick="clearHistory()">🗑️ 清除历史记录</button>
+    </div>
+    <div class="review-section" id="reviewSection">
+      <h3>📝 题目解析 <button class="clear-history-btn" onclick="clearAllMarks()" style="float:right;margin-top:-4px;">🗑️ 清除所有标记</button></h3>
+      <div class="review-filter">
+        <button class="filter-btn active" data-filter="all" onclick="filterReview('all')">全部</button>
+        <button class="filter-btn" data-filter="wrong" onclick="filterReview('wrong')">仅看错题</button>
+        <button class="filter-btn" data-filter="correct" onclick="filterReview('correct')">仅看对题</button>
+        <button class="filter-btn" data-filter="marked" onclick="filterReview('marked')">⭐ 标记题</button>
+      </div>
+      <div id="reviewList"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ====== 用户账户管理（云端存储） ======
+const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:3000' : '';
+const CURRENT_USER_KEY = 'aviation_current_user';
+const ADMIN_PHONE = '13800000000';
+
+// 当前登录用户信息（仅存手机号在 localStorage，用户数据在服务端）
+function setCurrentUser(phone){
+  localStorage.setItem(CURRENT_USER_KEY, phone);
+}
+function getCurrentUser(){
+  return localStorage.getItem(CURRENT_USER_KEY);
+}
+function clearCurrentUser(){
+  localStorage.removeItem(CURRENT_USER_KEY);
+}
+
+// API 调用封装
+async function apiCall(path, method, body){
+  const opts = { method: method || 'GET', headers: { 'Content-Type': 'application/json' } };
+  if(body) opts.body = JSON.stringify(body);
+  const res = await fetch(API_BASE + path, opts);
+  return await res.json();
+}
+
+// 从服务端同步当前用户的答题历史和标记到本地
+async function syncUserDataFromServer(){
+  const phone = getCurrentUser();
+  if(!phone) return;
+  try {
+    // 同步历史记录
+    const histRes = await apiCall('/api/history/' + phone);
+    if(histRes.success && histRes.history){
+      localStorage.setItem('aviation_quiz_history_' + phone, JSON.stringify(histRes.history));
+    }
+    // 同步标记
+    const marksRes = await apiCall('/api/marks/' + phone);
+    if(marksRes.success && marksRes.marks){
+      localStorage.setItem('aviation_quiz_marked_' + phone, JSON.stringify(marksRes.marks));
+    }
+  } catch(e) { console.error('同步用户数据失败:', e); }
+}
+
+// 将本地数据同步到服务端
+async function syncUserDataToServer(type){
+  const phone = getCurrentUser();
+  if(!phone) return;
+  try {
+    if(type === 'history'){
+      const history = JSON.parse(localStorage.getItem('aviation_quiz_history_' + phone) || '[]');
+      await apiCall('/api/history/' + phone, 'POST', { history });
+    } else if(type === 'marks'){
+      const marks = JSON.parse(localStorage.getItem('aviation_quiz_marked_' + phone) || '[]');
+      await apiCall('/api/marks/' + phone, 'POST', { marks });
+    }
+  } catch(e) { console.error('同步数据到服务端失败:', e); }
+}
+
+
+// ===== 图片验证码 =====
+const _CAPTCHA_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
+let _currentCaptcha = '';
+
+function _genCaptcha(){
+  let s = '';
+  for(let i=0;i<4;i++) s += _CAPTCHA_CHARS[Math.floor(Math.random()*_CAPTCHA_CHARS.length)];
+  return s;
+}
+
+function drawCaptcha(code){
+  const c = document.getElementById('captchaCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  const w = c.width, h = c.height;
+  ctx.fillStyle = '#f1f5f9';
+  ctx.fillRect(0,0,w,h);
+  // 干扰线
+  for(let i=0;i<5;i++){
+    ctx.beginPath();
+    ctx.moveTo(Math.random()*w, Math.random()*h);
+    ctx.lineTo(Math.random()*w, Math.random()*h);
+    ctx.strokeStyle = 'rgba(100,116,139,'+(0.15+Math.random()*0.2)+')';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  }
+  // 干扰点
+  for(let i=0;i<40;i++){
+    ctx.beginPath();
+    ctx.arc(Math.random()*w, Math.random()*h, 1.8, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(100,116,139,'+(0.1+Math.random()*0.15)+')';
+    ctx.fill();
+  }
+  // 字符
+  for(let i=0;i<code.length;i++){
+    ctx.save();
+    ctx.translate(18 + i*28, h/2 + 2);
+    ctx.rotate((Math.random()-0.5)*0.4);
+    ctx.font = 'bold 26px Consolas,monospace';
+    ctx.fillStyle = ['#1e40af','#059669','#dc2626','#7c3aed'][i%4];
+    ctx.fillText(code[i], -10, 10);
+    ctx.restore();
+  }
+}
+
+function refreshCaptcha(){
+  _currentCaptcha = _genCaptcha();
+  drawCaptcha(_currentCaptcha);
+  const el = document.getElementById('captchaInput');
+  if(el) el.value = '';
+  const err = document.getElementById('captchaErr');
+  if(err) err.textContent = '';
+  const btn = document.getElementById('btnSendCode');
+  if(btn){ btn.disabled = true; btn.textContent = '发送验证码'; }
+  if(window._codeTimer){clearInterval(window._codeTimer);window._codeTimer=null;}
+  resetSliderCaptcha();
+}
+
+function checkCaptcha(){
+  const v = document.getElementById('captchaInput').value.trim();
+  if(!v){ document.getElementById('captchaErr').textContent='请输入图片验证码'; return false; }
+  if(v.toLowerCase() !== _currentCaptcha.toLowerCase()){ document.getElementById('captchaErr').textContent='验证码错误，请重新输入'; return false; }
+  document.getElementById('captchaErr').textContent = '';
+  return true;
+}
+
+// 实时验证图片验证码，正确则启用发送按钮
+function liveCheckCaptcha(){
+  const v = document.getElementById('captchaInput').value.trim();
+  const btn = document.getElementById('btnSendCode');
+  const err = document.getElementById('captchaErr');
+  if(v.length === 4 && v.toLowerCase() === _currentCaptcha.toLowerCase()){
+    err.textContent = '✓ 验证通过';
+    err.style.color = '#059669';
+    updateSendBtnState();
+  } else {
+    btn.disabled = true;
+    if(v.length > 0 && v.length < 4) { err.textContent = ''; }
+    err.style.color = '';
+  }
+}
+
+// ===== 滑块验证 =====
+let _sliderPassed = false;
+function initSliderCaptcha(){
+  const track = document.getElementById('sliderTrack');
+  const btn = document.getElementById('sliderBtn');
+  const bg = document.getElementById('sliderBg');
+  const text = document.getElementById('sliderText');
+  if(!track || !btn) return;
+  let isDragging = false, startX = 0, currentX = 0;
+  const maxOffset = track.offsetWidth - btn.offsetWidth - 2;
+  function onMove(clientX){
+    if(!isDragging) return;
+    currentX = Math.max(0, Math.min(clientX - startX, maxOffset));
+    btn.style.left = currentX + 'px';
+    bg.style.width = (currentX + btn.offsetWidth/2) + 'px';
+  }
+  function onEnd(){
+    if(!isDragging) return;
+    isDragging = false;
+    if(currentX >= maxOffset - 8){
+      _sliderPassed = true;
+      track.classList.add('success');
+      track.classList.remove('fail');
+      text.textContent = '✓ 验证通过';
+      text.style.color = '#fff';
+      text.style.opacity = '1';
+      btn.style.left = maxOffset + 'px';
+      bg.style.width = '100%';
+      document.getElementById('sliderErr').textContent = '';
+      updateSendBtnState();
+    } else {
+      track.classList.add('fail');
+      track.classList.remove('success');
+      _sliderPassed = false;
+      btn.style.transition = 'left 0.4s ease';
+      bg.style.transition = 'width 0.4s ease';
+      btn.style.left = '0px';
+      bg.style.width = '0px';
+      document.getElementById('sliderErr').textContent = '验证失败，请重新拖动到最右侧';
+      setTimeout(() => {
+        track.classList.remove('fail');
+        btn.style.transition = '';
+        bg.style.transition = '';
+      }, 500);
+      updateSendBtnState();
+    }
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+    document.removeEventListener('touchmove', onTouchMove);
+    document.removeEventListener('touchend', onTouchEnd);
+  }
+  function onMouseMove(e){ onMove(e.clientX); }
+  function onMouseUp(){ onEnd(); }
+  function onTouchMove(e){ onMove(e.touches[0].clientX); }
+  function onTouchEnd(){ onEnd(); }
+  btn.addEventListener('mousedown', (e) => {
+    if(_sliderPassed) return;
+    isDragging = true;
+    startX = e.clientX - btn.offsetLeft;
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  });
+  btn.addEventListener('touchstart', (e) => {
+    if(_sliderPassed) return;
+    isDragging = true;
+    startX = e.touches[0].clientX - btn.offsetLeft;
+    document.addEventListener('touchmove', onTouchMove, {passive:false});
+    document.addEventListener('touchend', onTouchEnd);
+  }, {passive:false});
+}
+function resetSliderCaptcha(){
+  _sliderPassed = false;
+  const track = document.getElementById('sliderTrack');
+  const btn = document.getElementById('sliderBtn');
+  const bg = document.getElementById('sliderBg');
+  const text = document.getElementById('sliderText');
+  if(track){ track.classList.remove('success','fail'); }
+  if(btn){ btn.style.left = '0px'; btn.style.transition = ''; }
+  if(bg){ bg.style.width = '0px'; bg.style.transition = ''; }
+  if(text){ text.textContent = '请拖动滑块完成验证'; text.style.color = ''; text.style.opacity = ''; }
+  document.getElementById('sliderErr').textContent = '';
+  updateSendBtnState();
+}
+function updateSendBtnState(){
+  const v = document.getElementById('captchaInput').value.trim();
+  const captchaOK = v.length === 4 && v.toLowerCase() === _currentCaptcha.toLowerCase();
+  const loginBtn = document.getElementById('btnSendCode');
+  const regBtn = document.getElementById('btnSendCodeReg');
+  if(loginBtn) loginBtn.disabled = false; // 登录发送验证码无需前置验证
+  if(regBtn) regBtn.disabled = !(captchaOK && _sliderPassed);
+}
+// API_BASE 已统一为 API_BASE（见上方用户管理区）
+
+// 存储最近一次发送验证码的签名信息（用于 Vercel 无状态验证）
+window._lastSmsLogin = null;
+window._lastSmsReg = null;
+
+// 发送验证码（登录 - 手机验证码登录）
+async function sendCode(){
+  const phoneEl = document.getElementById('lpPhone');
+  const errEl = document.getElementById('loginErr');
+  const btnEl = document.getElementById('btnSendCode');
+  errEl.textContent = '';
+  errEl.style.color = '';
+  phoneEl.classList.remove('error');
+
+  const phone = phoneEl.value.trim();
+  if(!/^1[3-9]\d{9}$/.test(phone)){
+    errEl.textContent = '请输入有效的手机号（11位数字）';
+    errEl.style.color = '#dc2626';
+    phoneEl.classList.add('error');
+    return;
+  }
+
+  // 调用后端发送短信
+  btnEl.disabled = true;
+  btnEl.textContent = '发送中...';
+
+  try {
+    const res = await fetch(API_BASE + '/send-sms', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone })
+    });
+    const data = await res.json();
+
+    if(!data.success){
+      errEl.textContent = data.message || '发送失败';
+      errEl.style.color = '#dc2626';
+      btnEl.disabled = false;
+      btnEl.textContent = '发送验证码';
+      return;
+    }
+
+    // 保存签名信息（Vercel 无状态验证用）
+    window._lastSmsLogin = { code: data.code, timestamp: data.timestamp, signature: data.signature };
+
+    // 提示
+    if(data.mock){
+      errEl.textContent = '模拟模式：验证码已显示在终端控制台（请查看运行 node server.js 的窗口）';
+      errEl.style.color = '#059669';
+    } else {
+      errEl.textContent = '验证码已发送至您的手机，请注意查收';
+      errEl.style.color = '#059669';
+    }
+
+    // 倒计时60秒
+    let sec = 60;
+    btnEl.textContent = sec + '秒后重发';
+    const timer = setInterval(() => {
+      sec--;
+      if(sec <= 0){
+        clearInterval(timer);
+        btnEl.disabled = false;
+        btnEl.textContent = '重新发送';
+      } else {
+        btnEl.textContent = sec + '秒后重发';
+      }
+    }, 1000);
+  } catch(e) {
+    errEl.textContent = '网络错误，请确保短信服务已启动（node server.js）';
+    errEl.style.color = '#dc2626';
+    btnEl.disabled = false;
+    btnEl.textContent = '发送验证码';
+    console.error('发送验证码失败:', e);
+  }
+}
+
+// 发送验证码（注册）
+async function sendCodeForReg(){
+  const phoneEl = document.getElementById('regPhone');
+  const errEl = document.getElementById('regErr');
+  const btnEl = document.getElementById('btnSendCodeReg');
+  errEl.textContent = '';
+  errEl.style.color = '';
+  phoneEl.classList.remove('error');
+
+  const phone = phoneEl.value.trim();
+  if(!/^1[3-9]\d{9}$/.test(phone)){
+    errEl.textContent = '请输入有效的手机号（11位数字）';
+    errEl.style.color = '#dc2626';
+    phoneEl.classList.add('error');
+    return;
+  }
+
+  // 检查手机号是否已注册（调用服务端）
+  try {
+    const checkData = await apiCall('/api/user/' + phone);
+    if(checkData.success && checkData.user && checkData.user.username){
+      errEl.textContent = '该手机号已注册，请直接登录';
+      errEl.style.color = '#dc2626';
+      phoneEl.classList.add('error');
+      return;
+    }
+  } catch(e) {
+    errEl.textContent = '网络错误，请检查网络连接';
+    errEl.style.color = '#dc2626';
+    return;
+  }
+
+  // 先验证图片验证码
+  if(!checkCaptcha()){
+    refreshCaptcha();
+    return;
+  }
+  // 验证滑块
+  if(!window._sliderPassed){
+    errEl.textContent = '请先完成滑块验证';
+    errEl.style.color = '#dc2626';
+    return;
+  }
+
+  btnEl.disabled = true;
+  btnEl.textContent = '发送中...';
+
+  try {
+    const res = await fetch(API_BASE + '/send-sms', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone })
+    });
+    const data = await res.json();
+
+    if(!data.success){
+      errEl.textContent = data.message || '发送失败';
+      errEl.style.color = '#dc2626';
+      btnEl.disabled = false;
+      btnEl.textContent = '发送验证码';
+      refreshCaptcha();
+      return;
+    }
+
+    // 保存签名信息（Vercel 无状态验证用）
+    window._lastSmsReg = { code: data.code, timestamp: data.timestamp, signature: data.signature };
+
+    if(data.mock){
+      errEl.textContent = '模拟模式：验证码已显示在终端控制台';
+      errEl.style.color = '#059669';
+    } else {
+      errEl.textContent = '验证码已发送至您的手机，请注意查收';
+      errEl.style.color = '#059669';
+    }
+
+    let sec = 60;
+    btnEl.textContent = sec + '秒后重发';
+    const timer = setInterval(() => {
+      sec--;
+      if(sec <= 0){
+        clearInterval(timer);
+        btnEl.disabled = false;
+        btnEl.textContent = '重新发送';
+      } else {
+        btnEl.textContent = sec + '秒后重发';
+      }
+    }, 1000);
+  } catch(e) {
+    errEl.textContent = '网络错误，请确保短信服务已启动';
+    errEl.style.color = '#dc2626';
+    btnEl.disabled = false;
+    btnEl.textContent = '发送验证码';
+    console.error('注册发送验证码失败:', e);
+  }
+}
+
+// 手机号验证码登录
+async function doPhoneLogin(){
+  const phoneEl = document.getElementById('lpPhone');
+  const codeEl = document.getElementById('lpCode');
+  const errEl = document.getElementById('loginErr');
+  errEl.textContent = '';
+  errEl.style.color = '#dc2626';
+  phoneEl.classList.remove('error');
+  codeEl.classList.remove('error');
+
+  const phone = phoneEl.value.trim();
+  const code = codeEl.value.trim();
+
+  if(!/^1[3-9]\d{9}$/.test(phone)){
+    errEl.textContent = '请输入有效的手机号';
+    phoneEl.classList.add('error');
+    return;
+  }
+  if(!/^\d{6}$/.test(code)){
+    errEl.textContent = '请输入6位数字验证码';
+    codeEl.classList.add('error');
+    return;
+  }
+
+  // 调用后端验证验证码
+  try {
+    const smsData = window._lastSmsLogin || {};
+    const res = await fetch(API_BASE + '/verify-sms', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone, code, timestamp: smsData.timestamp, signature: smsData.signature })
+    });
+    const data = await res.json();
+
+    if(!data.success){
+      errEl.textContent = data.message || '验证失败';
+      codeEl.classList.add('error');
+      return;
+    }
+  } catch(e) {
+    errEl.textContent = '网络错误，请确保短信服务已启动（node server.js）';
+    codeEl.classList.add('error');
+    console.error('验证验证码失败:', e);
+    return;
+  }
+
+  // 验证成功，检查是否已注册（调用服务端）
+  try {
+    const data = await apiCall('/api/user/' + phone);
+    if(!data.success || !data.user || !data.user.username){
+      errEl.textContent = '该手机号未注册，请先完成注册并设置用户名密码';
+      errEl.style.color = '#dc2626';
+      return;
+    }
+    // 缓存用户名到 localStorage
+    localStorage.setItem('aviation_current_username', data.user.username);
+  } catch(e) {
+    errEl.textContent = '网络错误，请检查网络连接';
+    errEl.style.color = '#dc2626';
+    console.error('查询用户失败:', e);
+    return;
+  }
+
+  setCurrentUser(phone);
+  await syncUserDataFromServer();
+  showApp();
+}
+
+// 密码登录
+async function doPwdLogin(){
+  const usernameEl = document.getElementById('lpUsername');
+  const passwordEl = document.getElementById('lpPassword');
+  const errEl = document.getElementById('loginErr2');
+  errEl.textContent = '';
+  errEl.style.color = '#dc2626';
+  usernameEl.classList.remove('error');
+  passwordEl.classList.remove('error');
+
+  const username = usernameEl.value.trim();
+  const password = passwordEl.value.trim();
+
+  if(!username){
+    errEl.textContent = '请输入用户名';
+    usernameEl.classList.add('error');
+    return;
+  }
+  if(!password){
+    errEl.textContent = '请输入密码';
+    passwordEl.classList.add('error');
+    return;
+  }
+
+  // 调用服务端验证
+  try {
+    const data = await apiCall('/api/login-pwd', 'POST', { username, password });
+    if(!data.success || !data.user){
+      errEl.textContent = data.message || '用户名或密码错误';
+      usernameEl.classList.add('error');
+      passwordEl.classList.add('error');
+      return;
+    }
+    setCurrentUser(data.user.phone);
+    localStorage.setItem('aviation_current_username', data.user.username);
+    await syncUserDataFromServer();
+    showApp();
+  } catch(e) {
+    errEl.textContent = '网络错误，请检查网络连接';
+    console.error('密码登录失败:', e);
+  }
+}
+
+// 注册：下一步（验证手机号和短信验证码）
+async function nextRegStep(){
+  const phoneEl = document.getElementById('regPhone');
+  const codeEl = document.getElementById('regCode');
+  const errEl = document.getElementById('regErr');
+  errEl.textContent = '';
+  errEl.style.color = '#dc2626';
+  phoneEl.classList.remove('error');
+  codeEl.classList.remove('error');
+
+  const phone = phoneEl.value.trim();
+  const code = codeEl.value.trim();
+
+  if(!/^1[3-9]\d{9}$/.test(phone)){
+    errEl.textContent = '请输入有效的手机号';
+    phoneEl.classList.add('error');
+    return;
+  }
+  if(!/^\d{6}$/.test(code)){
+    errEl.textContent = '请输入6位数字验证码';
+    codeEl.classList.add('error');
+    return;
+  }
+
+  // 验证滑块
+  if(!window._sliderPassed){
+    errEl.textContent = '请先完成滑块验证';
+    errEl.style.color = '#dc2626';
+    return;
+  }
+
+  // 调用后端验证验证码
+  try {
+    const smsData = window._lastSmsReg || {};
+    const res = await fetch(API_BASE + '/verify-sms', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone, code, timestamp: smsData.timestamp, signature: smsData.signature })
+    });
+    const data = await res.json();
+
+    if(!data.success){
+      errEl.textContent = data.message || '验证码验证失败';
+      codeEl.classList.add('error');
+      return;
+    }
+  } catch(e) {
+    errEl.textContent = '网络错误，请确保短信服务已启动';
+    codeEl.classList.add('error');
+    console.error('注册验证验证码失败:', e);
+    return;
+  }
+
+  // 验证通过，切换到步骤2
+  document.getElementById('regStep1').classList.add('hidden');
+  document.getElementById('regStep2').classList.remove('hidden');
+  document.getElementById('regStep1Ind').classList.remove('active');
+  document.getElementById('regStep2Ind').classList.add('active');
+  // 保存验证通过的手机号（临时存储）
+  window._regVerifiedPhone = phone;
+}
+
+// 注册：返回上一步
+function backRegStep(){
+  document.getElementById('regStep2').classList.add('hidden');
+  document.getElementById('regStep1').classList.remove('hidden');
+  document.getElementById('regStep2Ind').classList.remove('active');
+  document.getElementById('regStep1Ind').classList.add('active');
+  window._regVerifiedPhone = null;
+  document.getElementById('regErr2').textContent = '';
+}
+
+// 注册：完成注册
+async function doRegister(){
+  const usernameEl = document.getElementById('regUsername');
+  const passwordEl = document.getElementById('regPassword');
+  const confirmEl = document.getElementById('regConfirmPwd');
+  const errEl = document.getElementById('regErr2');
+  errEl.textContent = '';
+  errEl.style.color = '#dc2626';
+  usernameEl.classList.remove('error');
+  passwordEl.classList.remove('error');
+  confirmEl.classList.remove('error');
+
+  const username = usernameEl.value.trim();
+  const password = passwordEl.value.trim();
+  const confirm = confirmEl.value.trim();
+  const phone = window._regVerifiedPhone;
+
+  if(!phone){
+    errEl.textContent = '请先完成手机号验证步骤';
+    return;
+  }
+
+  if(!username || username.length < 2 || username.length > 16){
+    errEl.textContent = '用户名长度应为2-16位';
+    usernameEl.classList.add('error');
+    return;
+  }
+  if(!/^[a-zA-Z0-9_\u4e00-\u9fa5]+$/.test(username)){
+    errEl.textContent = '用户名只能包含字母、数字、下划线或中文';
+    usernameEl.classList.add('error');
+    return;
+  }
+  if(!password || password.length < 6 || password.length > 20){
+    errEl.textContent = '密码长度应为6-20位';
+    passwordEl.classList.add('error');
+    return;
+  }
+  if(password !== confirm){
+    errEl.textContent = '两次输入的密码不一致';
+    confirmEl.classList.add('error');
+    return;
+  }
+
+  // 调用服务端注册
+  try {
+    const data = await apiCall('/api/register', 'POST', { phone, username, password });
+    if(!data.success){
+      errEl.textContent = data.message || '注册失败';
+      if(data.message && data.message.includes('用户名')){
+        usernameEl.classList.add('error');
+      }
+      return;
+    }
+  } catch(e) {
+    errEl.textContent = '网络错误，请检查网络连接';
+    console.error('注册失败:', e);
+    return;
+  }
+
+  // 注册成功，自动登录
+  window._regVerifiedPhone = null;
+  setCurrentUser(phone);
+  localStorage.setItem('aviation_current_username', username);
+  showApp();
+}
+
+// 切换登录/注册标签
+function switchAuthTab(tab){
+  const loginTab = document.getElementById('tabLogin');
+  const registerTab = document.getElementById('tabRegister');
+  const loginSection = document.getElementById('loginSection');
+  const registerSection = document.getElementById('registerSection');
+  const subtitle = document.getElementById('loginSubtitle');
+
+  if(tab === 'login'){
+    loginTab.classList.add('active');
+    registerTab.classList.remove('active');
+    loginSection.classList.remove('hidden');
+    registerSection.classList.add('hidden');
+    subtitle.textContent = '请选择登录方式';
+  } else {
+    loginTab.classList.remove('active');
+    registerTab.classList.add('active');
+    loginSection.classList.add('hidden');
+    registerSection.classList.remove('hidden');
+    subtitle.textContent = '请验证手机号并设置账户';
+    // 切换到注册时初始化验证码和滑块
+    refreshCaptcha();
+    resetSliderCaptcha();
+  }
+}
+
+// 切换登录子标签（手机验证码 / 密码登录）
+function switchLoginSubTab(tab){
+  const phoneTab = document.getElementById('subTabPhone');
+  const pwdTab = document.getElementById('subTabPwd');
+  const phoneForm = document.getElementById('loginPhoneForm');
+  const pwdForm = document.getElementById('loginPwdForm');
+
+  if(tab === 'phone'){
+    phoneTab.classList.add('active');
+    pwdTab.classList.remove('active');
+    phoneForm.classList.remove('hidden');
+    pwdForm.classList.add('hidden');
+  } else {
+    phoneTab.classList.remove('active');
+    pwdTab.classList.add('active');
+    phoneForm.classList.add('hidden');
+    pwdForm.classList.remove('hidden');
+  }
+}
+
+function logout(){
+  if(confirm('确定要退出登录吗？')){
+    clearCurrentUser();
+    localStorage.removeItem('aviation_current_username');
+    document.getElementById('lpPhone').value = '';
+    document.getElementById('lpCode').value = '';
+    document.getElementById('lpUsername').value = '';
+    document.getElementById('lpPassword').value = '';
+    document.getElementById('regPhone').value = '';
+    document.getElementById('regCode').value = '';
+    document.getElementById('regUsername').value = '';
+    document.getElementById('regPassword').value = '';
+    document.getElementById('regConfirmPwd').value = '';
+    document.getElementById('captchaInput').value = '';
+    document.getElementById('loginErr').textContent = '';
+    document.getElementById('loginErr2').textContent = '';
+    document.getElementById('regErr').textContent = '';
+    document.getElementById('regErr2').textContent = '';
+    document.getElementById('captchaErr').textContent = '';
+    resetSliderCaptcha();
+    refreshCaptcha();
+    showLoginPage();
+  }
+}
+
+function showApp(){
+  const user = getCurrentUser();
+  document.getElementById('loginPage').classList.add('hidden');
+  document.getElementById('resultPage').classList.add('hidden');
+  document.getElementById('quizPage').classList.add('hidden');
+
+  // 管理员判断
+  if(user === ADMIN_PHONE){
+    document.getElementById('adminPage').classList.remove('hidden');
+    document.getElementById('startPage').classList.add('hidden');
+    document.getElementById('userBar').classList.remove('hidden');
+    document.getElementById('adminPhoneDisplay').textContent = user;
+    document.getElementById('currentUserDisplay').textContent = '管理员';
+    renderAdminPanel();
+    return;
+  }
+
+  document.getElementById('startPage').classList.remove('hidden');
+  document.getElementById('adminPage').classList.add('hidden');
+  document.getElementById('userBar').classList.remove('hidden');
+  // 显示用户名（从 localStorage 缓存读取），否则显示脱敏手机号
+  const cachedName = localStorage.getItem('aviation_current_username');
+  let displayName = cachedName || user.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2');
+  document.getElementById('currentUserDisplay').textContent = displayName;
+  loadMarked();
+  renderChapterButtons();
+  renderStartTrend();
+}
+
+function showLoginPage(){
+  document.getElementById('loginPage').classList.remove('hidden');
+  document.getElementById('startPage').classList.add('hidden');
+  document.getElementById('resultPage').classList.add('hidden');
+  document.getElementById('quizPage').classList.add('hidden');
+  document.getElementById('adminPage').classList.add('hidden');
+  document.getElementById('userBar').classList.add('hidden');
+  // 重置为默认登录页
+  switchAuthTab('login');
+  switchLoginSubTab('phone');
+  // 如果已登录，自动填充手机号
+  const cur = getCurrentUser();
+  if(cur){
+    document.getElementById('lpPhone').value = cur;
+  }
+}
+
+// ====== 历史记录/标记 的存储key（按用户隔离） ======
+function getHistoryKey(){
+  const user = getCurrentUser();
+  return user ? 'aviation_quiz_history_' + user : 'aviation_quiz_history_guest';
+}
+function getMarkedKey(){
+  const user = getCurrentUser();
+  return user ? 'aviation_quiz_marked_' + user : 'aviation_quiz_marked_guest';
+}
+
+// ====== 标记状态
+// ====== 题库数据 ======
+const QUESTIONS = [
+// ---------- 第一章：飞机结构与材料 ----------
+{c:1,q:"维修人员检查机身内部时发现一组与机身纵轴垂直的环形骨架构件，其出现轻微变形。该构件的名称及主要功能是？",o:["翼肋——维持机翼剖面形状","隔框——分隔舱室、增强机身结构强度","翼梁——承受机翼主要载荷","桁条——承受机身纵向载荷"],a:1,e:"隔框是横向骨架（与机身纵轴垂直），主要作用是分隔舱室、增强机身结构强度。"},
+{c:1,q:"下列关于机身蒙皮职能的表述中，存在错误认知的是？",o:["保持飞机气动外形","保护内部结构不受外力侵蚀","承受部分气动载荷","为机翼提供主要升力来源"],a:3,e:"蒙皮保持气动外形、保护内部结构、承受部分载荷，但升力主要由机翼产生，蒙皮不提供主要升力。"},
+{c:1,q:"某新员工建议在机头区域增设经济舱座椅以提升载客量。这一方案为何不可行？",o:["机头空间不够宽敞","机头主要安装雷达、气象探测设备及飞行传感器，无空间安排座椅","机头结构无法承重","机头温度过低不适合乘客"],a:1,e:"机头主要安装雷达、气象探测设备及飞行传感器，不包含客舱座椅。这是考试常见陷阱。",trap:true},
+{c:1,q:"设计师在优化飞机气动外形时，对机身后部收拢气流的锥形构件进行了流线化处理。该构件名称及设计目的是？",o:["尾锥——收拢气流、减小尾部阻力","翼尖——减小诱导阻力","翼根——连接机翼与机身","前缘——分割来流"],a:0,e:"尾锥主要作用是收拢气流、减小尾部阻力。"},
+{c:1,q:"一架客机舷窗在维护中被拆解检查，以下哪一层在正常结构中不应出现？",o:["外层承压玻璃","中层减压玻璃","内层防护板","金属挡板"],a:3,e:"舷窗包含外层承压玻璃、中层减压玻璃、内层防护板，不包含金属挡板。",trap:true},
+{c:1,q:"关于客舱舷窗三层结构的功能对应，正确的是？",o:["外层减压、中层承压、内层装饰","外层承压、中层减压、内层防护","外层防护、中层承压、内层减压","三层均为承压结构"],a:1,e:"舷窗外层承压、中层减压、内层防护，三层分工不同。",trap:true},
+{c:1,q:"机翼内部有一根贯穿翼根至翼尖的纵向承力构件，承受着机翼绝大部分弯矩和剪力。该构件是？",o:["翼肋","翼梁","翼尖涡发生器","前缘缝条"],a:1,e:"翼梁是机翼中承受主要载荷的核心骨架。"},
+{c:1,q:"工程师需要在机翼与机身交界处进行疲劳裂纹检测。该连接部位的工程术语是？",o:["翼尖","翼根","翼弦中点","翼剖面"],a:1,e:"翼根是机翼与机身连接的部位，应力集中，需重点检测。"},
+{c:1,q:"某机翼的端部安装了翼梢小翼以减小诱导阻力。该小翼安装的位置是机翼的？",o:["翼根","翼梁中段","翼尖","前缘"],a:2,e:"翼尖是机翼最外侧的端部，翼梢小翼安装于此。"},
+{c:1,q:"飞行中机翼率先接触来流的边缘称为前缘，其判别依据是？",o:["位于机翼上方的一面","位于机翼下方的一面","迎风面一侧","背风面一侧"],a:2,e:"迎风面为前缘，背风面为后缘。"},
+{c:1,q:"机翼后缘通常安装副翼和襟翼等操纵面。后缘的判别依据是它是机翼的？",o:["迎风面","背风面","上表面","下表面"],a:1,e:"背风面为后缘，操纵面多安装于后缘。"},
+{c:1,q:"某机翼油箱通气系统出现故障导致油箱内气压异常。该通气口正常时的功能是？",o:["增加机翼升力","散热与平衡油箱内外气压","减小巡航阻力","为发动机供油增压"],a:1,e:"机翼通气口主要作用是散热、平衡气压，常用于机翼油箱。"},
+{c:1,q:"某军用运输机采用高置机翼设计，其布局选择的主要优势考量是？",o:["减小巡航阻力以便高速飞行","利于下方货舱装卸大型装备","降低发动机噪音","便于机翼内部布线"],a:1,e:"上单翼利于下方货舱装卸，军用运输机常用。"},
+{c:1,q:"波音737和空客A320这两款最常见的民航客机均采用同一种机翼布局，它是？",o:["上单翼","下单翼","中单翼","三翼面"],a:1,e:"绝大多数民航客机普遍采用下单翼布局，便于发动机维护和起落架收放。"},
+{c:1,q:"一架初级运动飞机在低速飞行中表现良好但高速阻力大，其机翼最可能采用？",o:["后掠翼","三角翼","平直翼","可变后掠翼"],a:2,e:"平直翼适用于低速轻型飞机、运动飞机，高速时阻力大。"},
+{c:1,q:"以下关于上单翼与下单翼布局的对比，正确的是？",o:["上单翼便于发动机维护，下单翼利于装卸货","上单翼利于下方货舱装卸，下单翼为民航客机主流","两者功能完全相同","下单翼仅用于军用运输机"],a:1,e:"上单翼利于下方货舱装卸（军用运输机），下单翼为民航客机主流布局。"},
+{c:1,q:"垂直安定面是垂直尾翼的固定主体，它提供的稳定性类型是？",o:["俯仰稳定性","横滚稳定性","航向稳定性","纵向稳定性"],a:2,e:"垂直安定面提供航向稳定性（防止机头左右偏摆）。"},
+{c:1,q:"水平安定面是水平尾翼的固定主体，它提供的稳定性类型是？",o:["航向稳定性","俯仰稳定性","横滚稳定性","偏航稳定性"],a:1,e:"水平安定面提供俯仰稳定性（防止机头上下偏转）。"},
+{c:1,q:"飞行员发现飞机在飞行中机头不断左右偏摆，最可能与哪个安定面效能不足有关？",o:["水平安定面","垂直安定面","机翼上反角","腹鳍"],a:1,e:"垂直安定面提供航向稳定性，机头左右偏摆说明航向稳定性不足。"},
+{c:1,q:"飞机在颠簸中机头反复上下俯仰且难以恢复，最可能与哪个安定面有关？",o:["垂直安定面","水平安定面","方向舵","副翼"],a:1,e:"水平安定面提供俯仰稳定性，机头上下俯仰难以恢复说明俯仰稳定性不足。"},
+{c:1,q:"一架轻型螺旋桨飞机的起落架布局为：前轮在重心之前、主轮在重心之后。这种布局属于？",o:["后三点式","前三点式","自行车式","滑橇式"],a:1,e:"前三点式起落架前轮在前、主轮在后，轻型螺旋桨飞机多采用。"},
+{c:1,q:"飞机落地后需要在跑道上减速，制动力的直接来源是安装在哪个部位的刹车系统？",o:["机身底部减速板","起落架机轮","发动机反推装置","尾锥阻力伞"],a:1,e:"刹车系统安装在起落架机轮上，用于地面减速。"},
+{c:1,q:"某航空公司评估新一代机身材料，传统民航客机机身主要承重结构使用的是？",o:["钛合金板材","航空铝合金","碳纤维全复合材料","高强度不锈钢"],a:1,e:"民用客机机身主要承重材质为航空铝合金（强度高、重量轻、耐腐蚀）。"},
+{c:1,q:"机头雷达罩在选材上有一个特殊的技术要求，使其不能使用常规金属材质。该要求是？",o:["必须比铝合金更轻","必须具备透波性能，使雷达信号能穿透","必须耐更高温度","必须具备隐身能力"],a:1,e:"雷达罩需要透波，材质为透波复合材料，若用金属会屏蔽雷达信号。",trap:true},
+{c:1,q:"波音787相比传统铝制机身客机在燃油经济性和噪音方面表现更优，其关键原因是？",o:["采用了更先进的发动机","采用全复合材料机身","减小了机翼面积","降低了巡航高度"],a:1,e:"波音787采用全复合材料机身，更轻更坚固，省油且静音。"},
+{c:1,q:"在飞机设计评审会上，以下哪项被列为设计原则会引起评审组反对？",o:["轻量化","耐腐蚀","高强度","高阻力"],a:3,e:"飞机设计原则为轻量化、耐腐蚀、高强度。高阻力与飞行性能相悖，不属于设计原则。",trap:true},
+{c:1,q:"波音787全复合材料机身相比传统铝合金机身，以下哪项不属于其优势？",o:["减轻机身重量","降低燃油消耗","降低客舱噪音","提高最大飞行速度至超音速"],a:3,e:"全复合材料机身省油、静音，但不能使飞机超音速飞行。"},
+{c:1,q:"如果机头雷达罩误用金属材质替换透波复合材料，最直接的后果是？",o:["机身重量增加","雷达信号被屏蔽，气象探测和导航功能失效","飞行阻力增大","影响飞机平衡"],a:1,e:"金属会屏蔽雷达电磁波，导致雷达无法穿透罩体工作，气象探测和导航功能失效。",trap:true},
+
+// ---------- 第二章：操纵面与飞行操纵原理（含原飞行操纵原理） ----------
+{c:1,q:"飞行员拉杆使飞机抬头时，偏转的操纵面位于水平尾翼的哪个部位？",o:["前缘","后缘","上表面","翼尖"],a:1,e:"升降舵安装在水平尾翼后缘，偏转时改变尾翼弯度产生俯仰力矩。"},
+{c:2,q:"某飞行员需要控制飞机的上下俯仰姿态，应操纵哪个操纵面？",o:["方向舵","副翼","升降舵","扰流板"],a:2,e:"升降舵控制飞机上下俯仰。"},
+{c:2,q:"飞机在巡航中需要微调航向（左右转向），应偏转安装在垂直尾翼后缘的哪个操纵面？",o:["升降舵","方向舵","副翼","缝翼"],a:1,e:"方向舵安装在垂直尾翼后缘，控制飞机偏航（左右转向）。"},
+{c:2,q:"以下操纵面与其控制运动的对应关系中，错误的是？",o:["升降舵——俯仰","方向舵——偏航","副翼——滚转","方向舵——滚转"],a:3,e:"方向舵控制偏航而非滚转，滚转由副翼控制。"},
+{c:2,q:"一架飞机需要向左滚转，副翼应如何动作？同时这些副翼位于机翼的哪个部位？",o:["位于机翼后缘内侧，两侧同时下偏","位于机翼后缘外侧，左副翼上偏右副翼下偏","位于机翼前缘，左副翼下偏右副翼上偏","位于机翼上表面，两侧同时展开"],a:1,e:"副翼位于机翼后缘外侧，左滚转时左副翼上偏、右副翼下偏。"},
+{c:2,q:"关于副翼和襟翼在机翼后缘的安装位置区别，正确的是？",o:["副翼在内侧，襟翼在外侧","副翼在外侧，襟翼在内侧","两者都在外侧","两者都在内侧"],a:1,e:"副翼在机翼后缘外侧（控制滚转），襟翼在内侧（增升）。"},
+{c:2,q:"飞机在进近降落时速度过低有失速风险，飞行员放下位于机翼后缘内侧的增升装置。该装置是？",o:["副翼","襟翼","扰流板","缝翼"],a:1,e:"襟翼安装在机翼后缘内侧，低速起降时增加升力、降低失速速度。"},
+{c:2,q:"关于襟翼的两类分类及作用，以下说法正确的是？",o:["简单襟翼和开裂式襟翼，均用于低速增升","前缘襟翼和后缘襟翼，均用于高速减阻","单缝襟翼和双缝襟翼，均用于空中减速","内侧襟翼和外侧襟翼，均用于控制滚转"],a:0,e:"襟翼分为简单襟翼、开裂式襟翼两类，均用于低速起降时增升。"},
+{c:2,q:"某飞机在低速大迎角飞行时有失速趋势，飞行员通过前缘装置增大机翼弯度来避免失速。该装置是？",o:["襟翼","副翼","缝翼","扰流板"],a:2,e:"缝翼安装在机翼前缘，通过增大机翼弯度提升低速性能、防止失速。"},
+{c:2,q:"巡航中飞行员需要空中减速，同时希望在着陆时破坏升力使飞机快速接地。满足这两种需求的操纵面是？",o:["襟翼","缝翼","扰流板","升降舵"],a:2,e:"扰流板安装在机翼上表面，可空中减速、辅助横滚操纵、破坏升力辅助降落。"},
+{c:2,q:"以下哪项不属于扰流板的功能？",o:["空中减速","辅助横滚操纵","破坏升力辅助降落","低速起降时增加升力"],a:3,e:"扰流板不会增加升力，反而破坏升力。增升由襟翼缝翼负责。"},
+{c:2,q:"扰流板在降落接地瞬间展开的主要目的是？",o:["增加升力延长滑跑","破坏升力使飞机紧贴跑道、增大摩擦力快速减速","提高发动机推力","调整飞机航向"],a:1,e:"扰流板破坏升力辅助降落，使飞机快速接地并增强刹车效果。"},
+{c:2,q:"某战斗机在空战中需要极快的俯仰响应以完成大机动动作。相比传统平尾，它更可能采用？",o:["固定水平安定面","全动平尾","可变后掠翼","鸭翼+三角翼"],a:1,e:"全动平尾俯仰操纵力矩更大、响应更快，满足战斗机大机动需求。"},
+{c:2,q:"全动平尾与传统平尾（安定面+升降舵）的主要区别在于？",o:["全动平尾没有安定面，整个水平尾翼可偏转","全动平尾仅后缘可动","传统平尾的操纵效率更高","全动平尾仅用于民航"],a:0,e:"全动平尾整个水平尾翼都可偏转，提供更大的俯仰操纵力矩和更快的响应。"},
+{c:2,q:"以下四个操纵面中，安装在机翼上表面的是？",o:["副翼","襟翼","缝翼","扰流板"],a:3,e:"扰流板安装在机翼上表面，展开时扰乱气流、破坏升力。"},
+{c:2,q:"以下四个操纵面中，安装在机翼前缘的是？",o:["副翼","襟翼","缝翼","扰流板"],a:2,e:"缝翼安装在机翼前缘，增大弯度、防止失速。"},
+{c:2,q:"飞行员向右踩方向舵踏板使飞机右偏航，此时方向舵的偏转方向及安装位置是？",o:["安装在水平尾翼后缘，上偏","安装在垂直尾翼后缘，右偏","安装在机翼后缘外侧，左偏","安装在机翼前缘，右偏"],a:1,e:"方向舵安装在垂直尾翼后缘，右偏航时方向舵右偏。"},
+{c:2,q:"关于升降舵和方向舵的对比，正确的是？",o:["都安装在水平尾翼","升降舵在水平尾翼后缘控制俯仰，方向舵在垂直尾翼后缘控制偏航","都控制飞机的滚转","都安装在机翼上"],a:1,e:"升降舵在水平尾翼后缘控制俯仰，方向舵在垂直尾翼后缘控制偏航。"},
+{c:2,q:"关于襟翼和缝翼的对比，正确的是？",o:["都安装在机翼前缘","襟翼在后缘内侧增升，缝翼在前缘防失速","都用于高速巡航","都用于破坏升力"],a:1,e:"襟翼在机翼后缘内侧增升，缝翼在机翼前缘增大弯度防失速。"},
+{c:2,q:"副翼和扰流板都可以参与横滚操纵，但二者的安装位置分别是？",o:["副翼在前缘，扰流板在后缘","副翼在后缘外侧，扰流板在上表面","副翼在上表面，扰流板在前缘","两者都在后缘内侧"],a:1,e:"副翼在机翼后缘外侧，扰流板在机翼上表面，两者可配合辅助横滚。"},
+
+// ---------- （已合并至第二章） ----------
+{c:2,q:"飞行员向后拉杆使飞机抬头，此时升降舵的偏转方向是？",o:["上偏（后缘向上）","下偏（后缘向下）","保持中立不偏转","左右偏转"],a:0,e:"抬头时升降舵上偏，产生向下的尾翼气动力使机头上扬。"},
+{c:2,q:"飞行员向前推杆使飞机低头，此时升降舵的偏转方向是？",o:["上偏","下偏（后缘向下）","保持中立","左右偏转"],a:1,e:"低头时升降舵下偏，产生向上的尾翼气动力使机头下俯。"},
+{c:2,q:"飞机需要向左滚转时，左右两侧副翼的动作是？",o:["左副翼下偏，右副翼上偏","左副翼上偏，右副翼下偏","两侧副翼同时上偏","两侧副翼同时下偏"],a:1,e:"左滚转时左副翼上偏（减升）、右副翼下偏（增升），产生左滚力矩。"},
+{c:2,q:"飞行员向右压杆使飞机右滚转，此时副翼状态为？",o:["左副翼上偏，右副翼下偏","左副翼下偏，右副翼上偏","两副翼同时上偏","两副翼同时下偏"],a:1,e:"右滚转时左副翼下偏（增升）、右副翼上偏（减升），产生右滚力矩。"},
+{c:2,q:"飞行员踩右舵使飞机向右偏航，方向舵的偏转方向是？",o:["左偏","右偏","上偏","保持中立"],a:1,e:"右偏航时方向舵右偏，产生向右的偏航力矩。"},
+{c:2,q:"标准协调转弯的正确操纵配合方式是？",o:["仅用方向舵转弯","仅用副翼压坡","副翼压坡+方向舵修正配合","仅用升降舵拉起"],a:2,e:"协调转弯需副翼压坡+方向舵修正配合，否则会产生侧滑。"},
+{c:2,q:"某飞行员在转弯时只用了副翼而未配合方向舵，乘客感到飞机有侧向滑动的不适感。这种现象称为？",o:["失速","螺旋","侧滑","抖振"],a:2,e:"转弯时副翼与方向舵未配合好导致侧滑现象，影响乘坐舒适性和飞行安全。"},
+{c:2,q:"差动副翼设计的核心优势是？",o:["增加机翼升力","减小转弯时的逆向偏航阻力、改善横滚效率","提高巡航速度","降低失速速度"],a:1,e:"差动副翼上偏角度大于下偏角度，减小逆向偏航阻力、改善横滚操纵效率。"},
+{c:2,q:"飞行中飞机出现持续左倾斜趋势，飞行员应调整哪种配平来修正？",o:["方向舵配平","副翼配平","升降舵配平","扰流板配平"],a:1,e:"副翼配平修正飞机倾斜、保持水平飞行。"},
+{c:2,q:"飞行中飞机航向持续向右偏斜，飞行员应调整哪种配平来修正？",o:["副翼配平","方向舵配平","升降舵配平","襟翼配平"],a:1,e:"方向舵配平修正航向偏斜、保持直线飞行。"},
+{c:2,q:"某飞机进入起飞滑跑阶段，其襟翼和缝翼应处于什么构型？",o:["完全收起以减小阻力","小角度/部分展开以增加升力","全开以最大化阻力","仅扰流板展开"],a:1,e:"起飞阶段襟翼缝翼通常为小角度/部分展开，增加升力帮助起飞。"},
+{c:2,q:"飞机在最终进近阶段即将接地时，襟翼和缝翼应处于什么状态？",o:["完全收起","小角度展开","全开以同时增加升力和阻力","仅缝翼收起"],a:2,e:"降落阶段襟翼缝翼全开，同时增加升力与阻力，便于低速接地。"},
+{c:2,q:"降落时将襟翼缝翼全开的主要目的是？",o:["减小飞行阻力以快速接地","提高巡航速度","同时增加升力与阻力，使飞机能在更低速度下安全接地","节省燃油"],a:2,e:"全开可同时增升增阻，使飞机低速稳定进近并安全接地。"},
+{c:2,q:"飞机进入高速巡航阶段后，襟翼和缝翼应如何配置？",o:["完全收起以减小阻力","小角度展开以备用","全开以增加稳定性","仅缝翼展开"],a:0,e:"高速巡航阶段襟翼、缝翼完全收起，以减小飞行阻力、提高巡航效率。"},
+{c:2,q:"巡航时收起襟翼缝翼的原因是？",o:["增加升力","减小飞行阻力以降低油耗","降低失速速度","便于低速机动"],a:1,e:"高速巡航收起襟翼缝翼以减小阻力、降低油耗。"},
+{c:2,q:"以下对飞机设计原则的描述中，有一项与设计理念相矛盾，它是？",o:["轻量化以提升载荷能力","耐腐蚀以延长使用寿命","高强度以保障安全","高阻力以降低速度"],a:3,e:"设计原则为轻量化、耐腐蚀、高强度。高阻力与设计理念相悖。",trap:true},
+{c:2,q:"发动机吊舱整流罩在飞行中扮演的角色是？",o:["提供额外升力","保护发动机并降低气动阻力","控制飞机俯仰姿态","为APU提供动力"],a:1,e:"发动机吊舱整流罩保护发动机、降低风阻。"},
+{c:2,q:"地勤人员在飞机尾部发现一个辅助燃气涡轮装置。该装置的名称是？",o:["主发动机","APU（辅助动力装置）","RAT（冲压空气涡轮）","空调组件"],a:1,e:"APU（辅助动力装置）安装在飞机尾部。"},
+{c:2,q:"航班在廊桥停靠期间，机上空调和照明由什么设备供电？",o:["主发动机","APU（辅助动力装置）","地面电源车","机载蓄电池"],a:1,e:"APU在地面停机时供电供气、启动主发动机，为飞机提供电力与空调。"},
+{c:2,q:"APU在飞机起飞前和降落后分别为飞机提供什么服务？",o:["额外推力帮助起飞","电力与空调","液压动力","导航信号"],a:1,e:"APU在起飞前和降落后为飞机提供电力与空调。"},
+{c:2,q:"飞机着陆后需要在跑道上快速减速，以下哪个系统直接参与地面制动？",o:["空中减速板","起落架机轮刹车系统","发动机反推-only","方向舵"],a:1,e:"刹车系统安装在起落架机轮上，用于地面减速。"},
+{c:2,q:"协调转弯时需要配合使用的两个操纵面是？",o:["升降舵和方向舵","副翼和方向舵","副翼和襟翼","升降舵和副翼"],a:1,e:"协调转弯需副翼压坡+方向舵修正配合。"},
+{c:2,q:"侧滑现象的本质原因是？",o:["升降舵操作过量","转弯时副翼产生的滚转力矩与方向舵产生的偏航力矩不协调","襟翼展开角度过大","扰流板不对称展开"],a:1,e:"转弯时副翼与方向舵未配合好，滚转与偏航力矩不协调导致侧滑。"},
+{c:2,q:"飞行员发现飞机在平飞时航向持续向左偏移，应如何使用配平系统？",o:["向右调整副翼配平","向右调整方向舵配平","向上调整升降舵配平","展开扰流板"],a:1,e:"方向舵配平修正航向偏斜。航向左偏则向右调整方向舵配平。"},
+{c:2,q:"飞行员发现飞机在平飞时持续向右倾斜，应如何使用配平系统？",o:["向左调整副翼配平","向左调整方向舵配平","向下调整升降舵配平","收起襟翼"],a:0,e:"副翼配平修正飞机倾斜。右倾斜则向左调整副翼配平。"},
+{c:2,q:"全动平尾的优势使其在特定机型上被广泛采用。该机型及原因是？",o:["民航客机——结构简单维护方便","战斗机——俯仰操纵力矩大、响应快，满足大机动需求","货运飞机——载荷大需要更强结构","直升机——需要快速调整旋翼"],a:1,e:"全动平尾俯仰操纵力矩更大、响应更快，满足战斗机大机动需求。"},
+{c:2,q:"空中飞行时飞行员需要辅助横滚操纵，扰流板的工作方式是？",o:["两侧扰流板同时对称展开","仅一侧机翼扰流板展开，配合副翼增强滚转效果","扰流板完全收起不参与横滚","扰流板仅能用于降落减速"],a:1,e:"扰流板在空中可单侧展开，配合副翼辅助横滚操纵，提高滚转效率。"},
+{c:2,q:"关于起飞、巡航、降落三个阶段中襟翼缝翼的配置变化，正确顺序是？",o:["全开→收起→小角度","小角度→收起→全开","收起→全开→小角度","全开→小角度→收起"],a:1,e:"起飞小角度展开→巡航完全收起→降落全开。"},
+
+// ---------- 第三章：航空史与著名机型（含原中国航空代表机型、经典机型） ----------
+{c:3,q:"人类航空史上一个里程碑事件发生在1903年。该事件的标志性意义是？",o:["首次实现气球载人升空","首次实现动力载人持续飞行","首次跨大西洋飞行","首次超音速飞行"],a:1,e:"1903年莱特兄弟'飞行者一号'首次成功实现动力载人持续飞行。"},
+{c:3,q:"莱特兄弟'飞行者一号'的成功首飞标志着动力飞行时代的开启。其成功实现的具体飞行方式是？",o:["首次无动力滑翔","首次动力载人持续飞行","首次喷气动力飞行","首次火箭动力飞行"],a:1,e:"1903年实现首次动力载人持续飞行，区别于之前的无动力滑翔。"},
+{c:3,q:"二战空战中，美军一款以远程护航和高机动性著称的单发螺旋桨战斗机是？",o:["P-38闪电","P-51野马","P-47雷电","B-25米切尔"],a:1,e:"二战时期美国P-51'野马'是经典单发螺旋桨战斗机，以远程护航闻名。"},
+{c:3,q:"关于P-51'野马'，以下描述正确的是？",o:["双发喷气式轰炸机","单发螺旋桨战斗机，二战经典机型","四发重型轰炸机","舰载鱼雷攻击机"],a:1,e:"P-51'野马'是经典单发螺旋桨战斗机。"},
+{c:3,q:"喷气式战斗机时代的开端由一款德国机型开创。该机型是？",o:["英国'流星'","德国Me-262","美国F-86'佩刀'","苏联米格-15"],a:1,e:"德国Me-262是世界首款量产喷气式战斗机，开创了喷气时代。"},
+{c:3,q:"Me-262在航空史上的里程碑地位源于？",o:["首款超音速飞机","首款量产喷气式战斗机","首款隐身战机","首款电传飞控战机"],a:1,e:"Me-262是德国研制的世界首款量产喷气式战斗机。"},
+{c:3,q:"某航空史考试中有一道易错题：'世界首款喷气式民航客机是？'以下正确答案是？",o:["空客A310","波音707","英国'彗星客机'","苏联图-104"],a:2,e:"英国'彗星客机'是世界首款喷气式民航客机。考试陷阱：勿选空客A310。",trap:true},
+{c:3,q:"关于'彗星客机'和空客A310在航空史上的地位，以下正确的是？",o:["A310是世界首款喷气式民航客机","彗星客机是世界首款喷气式民航客机，A310不是","两者都是首款喷气式民航客机","波音707才是首款喷气式民航客机"],a:1,e:"英国'彗星客机'是世界首款喷气式民航客机，A310是后来才出现的。",trap:true},
+{c:3,q:"在喷气式民航客机之后，航空史上的下一个重大突破是超音速民航飞行。实现这一突破的机型是？",o:["彗星客机","协和客机","波音747","空客A380"],a:1,e:"'协和客机'是世界首款超音速民航客机。"},
+{c:3,q:"1970年代诞生的F-16在飞控技术史上具有里程碑意义，其首创的技术是？",o:["隐身技术","电传飞控技术","可变后掠翼","推力矢量"],a:1,e:"F-16是全球首款电传飞控军用飞机，诞生于1970年代。"},
+{c:3,q:"民航领域紧跟军机电传飞控步伐，首款采用电传飞控的民用客机是？",o:["波音737","波音777","空客A320","空客A340"],a:2,e:"空客A320是全球首款电传飞控民用客机。"},
+{c:3,q:"关于F-16和空客A320的共同技术里程碑，正确的是？",o:["F-16是首款电传军机，A320是首款电传民机","两者都是首款隐身飞机","F-16是首款超音速飞机，A320是首款双层客机","两者没有任何技术关联"],a:0,e:"F-16是全球首款电传飞控军用飞机，A320是首款电传飞控民用客机。"},
+{c:3,q:"波音707在波音家族中的历史地位是？",o:["首款超音速客机","波音首款量产喷气客机，开启波音喷气时代","首款电传飞控客机","首款双层宽体客机"],a:1,e:"波音707是波音首款量产喷气客机。"},
+{c:3,q:"全球使用最广泛的单通道客机是波音家族的哪款机型？",o:["波音737","波音747","波音757","波音787"],a:0,e:"波音737是全球使用最广泛的单通道客机。"},
+{c:3,q:"航空爱好者常用一个绰号来形容波音747，这个绰号是？",o:["空中女王","空中巨无霸","空中堡垒","空中女王蜂"],a:0,e:"波音747被誉为'空中女王'。"},
+{c:3,q:"波音757在客机分类中属于哪种类型？",o:["短途支线客机","中远程窄体大载重客机","双层宽体客机","超音速客机"],a:1,e:"波音757是中远程窄体大载重客机。"},
+{c:3,q:"波音787相比同级别传统客机在材料应用上的革命性突破是？",o:["首次使用全钛合金机身","采用全复合材料机身","首次使用不锈钢机身","采用全木质机身"],a:1,e:"波音787采用全复合材料机身，省油、静音。"},
+{c:3,q:"空客公司首款投入商业运营的客机是？",o:["A300","A320","A330","A340"],a:0,e:"A300是空客公司首款商业运营客机。"},
+{c:3,q:"空客A320在民机技术史上的里程碑意义是？",o:["首款宽体客机","全球首款电传飞控民用客机","首款超音速客机","首款双层客机"],a:1,e:"空客A320是全球首款电传飞控民用客机。"},
+{c:3,q:"以下关于空客A330发动机布局的描述，正确的是？",o:["双发窄体","双发宽体","四发宽体","双层四发"],a:1,e:"空客A330为双发宽体布局。"},
+{c:3,q:"空客A350在客机分类中属于？",o:["支线客机","远程双通道宽体客机","超音速客机","双层四发客机"],a:1,e:"A350为远程双通道客机。"},
+{c:3,q:"目前世界上最大的客机是空客A380，其发动机数量和客舱布局是？",o:["双发单层","四发双层","三发单层","四发单层"],a:1,e:"空客A380是世界最大的双层四发客机。"},
+{c:3,q:"仅凭发动机布局特征即可区分以下哪两款客机？",o:["波音737和空客A320——均为双发","波音727（尾部三发）与波音737（翼下双发）","空客A330和波音787——均为双发宽体","波音747和空客A380——均为四发"],a:1,e:"波音727为独特的尾部三发布局，波音737为翼下双发，布局差异明显。"},
+{c:3,q:"波音727在发动机布局上的独特之处是？",o:["翼下双发","尾部三发","翼下四发","机首单发"],a:1,e:"波音727为独特的尾部三发布局。"},
+{c:3,q:"以下哪两款客机均为四发布局但客舱结构不同？",o:["波音747（半双层）与空客A380（全双层）","波音737与空客A320","波音757与波音767","空客A330与空客A350"],a:0,e:"波音747为半双层四发，空客A380为全双层四发，均为四发但客舱结构不同。"},
+{c:3,q:"B-52是美军一款服役超过60年的经典机型，其类别是？",o:["战斗机","战略轰炸机","侦察机","运输机"],a:1,e:"B-52是战略轰炸机。"},
+{c:3,q:"U-2以其极高的飞行高度著称，其主要任务是？",o:["空战格斗","高空战略侦察","战略轰炸","空中加油"],a:1,e:"U-2是高空战略侦察机。"},
+{c:3,q:"KC-135在空中执行的主要任务是？",o:["战略轰炸","空中加油","电子战干扰","人员运输"],a:1,e:"KC-135是空中加油机。"},
+{c:3,q:"在战斗机代际划分中，F-22属于？",o:["第四代","第五代","第三代","第六代"],a:1,e:"F-22是五代机。"},
+{c:3,q:"F/A-18是一款多用途战机，其主要部署平台是？",o:["陆基机场","航空母舰","高空侦察站","战略运输机队"],a:1,e:"F/A-18是航母舰载机。"},
+{c:3,q:"F-16有一个广为人知的绰号，它是？",o:["鹰","战隼","大黄蜂","猛禽"],a:1,e:"F-16绰号'战隼'。"},
+{c:3,q:"苏-57是俄罗斯研制的第五代战机，其核心特征是？",o:["轻型单发设计","重型隐身设计","三角翼布局","可变后掠翼"],a:1,e:"苏-57是俄罗斯重型五代隐身战机。"},
+{c:3,q:"米格-21的经典气动布局特征使其在特定飞行包线内表现优异，该特征是？",o:["可变后掠翼","三角翼设计","鸭翼布局","飞翼布局"],a:1,e:"米格-21经典特征是三角翼设计。"},
+{c:3,q:"'台风'战斗机是多国联合研制的成果，参与国包括？",o:["英德意西","法德西","美英日","俄印中"],a:0,e:"'台风'由英德意西联合研制。"},
+{c:3,q:"'阵风'战斗机是某国海空主力战机，该国的代表词是？",o:["英国","德国","法国","意大利"],a:2,e:"'阵风'是法国主力战机。"},
+{c:3,q:"'台风'和'阵风'两款欧洲战斗机的研制方式不同。以下对比正确的是？",o:["'台风'由法国独立研制，'阵风'由多国联合研制","'台风'由英德意西联合研制，'阵风'由法国独立研制","两者均由多国联合研制","两者均由法国独立研制"],a:1,e:"'台风'由英德意西联合研制，'阵风'是法国达索公司独立研制的。"},
+
+// ---------- （已合并至第三章） ----------
+{c:3,q:"我国航空工业实现了从仿制到自主研制的跨越。首款自主研制的第三代主战战斗机是？",o:["歼-15","歼-10","歼-16","歼-20"],a:1,e:"歼-10是我国首款自主研制的第三代主战战斗机。"},
+{c:3,q:"关于歼-10在我国航空工业发展中的定位，正确的描述是？",o:["我国首款舰载固定翼战斗机","我国首款自主研制的第三代主战战斗机","我国第五代隐形战斗机","重型双发多用途战机"],a:1,e:"歼-10是我国首款自主研制的第三代主战战斗机，具有里程碑意义。"},
+{c:3,q:"我国海军航空兵需要一款能在航母上起降的固定翼战斗机。实现这一突破的机型是？",o:["歼-10","歼-15","歼-16","歼-20"],a:1,e:"歼-15是我国首款舰载固定翼战斗机。"},
+{c:3,q:"歼-15与歼-10、歼-16、歼-20相比，其独特定位是？",o:["第五代隐形战机","我国首款舰载固定翼战斗机","中程战术运输机","初级教练机"],a:1,e:"歼-15是我国首款舰载固定翼战斗机。"},
+{c:3,q:"我国需要一款载弹量大、多用途能力强的重型双发战机。满足这一需求的机型是？",o:["歼-10","歼-15","歼-16","初教-6"],a:2,e:"歼-16是重型双发多用途战机。"},
+{c:3,q:"歼-16因强大的对地打击能力而获得了一个形象绰号，它是？",o:["空中女王","炸弹卡车","战隼","猛禽"],a:1,e:"歼-16有'炸弹卡车'之称，体现其大载弹量多用途特征。"},
+{c:3,q:"歼-20的研制成功标志着我国跻身世界五代机俱乐部。其核心特征是？",o:["第三代主力战斗机","舰载战斗机","第五代隐形战斗机","初级教练机"],a:2,e:"歼-20是我国自主研发的第五代隐形战斗机。"},
+{c:3,q:"关于歼-20与其他歼系列战机的区别，正确的是？",o:["歼-10是五代机，歼-20是三代机","歼-15是舰载机，歼-20是五代隐形战机","歼-16是教练机，歼-20是运输机","歼-10是舰载机，歼-15是五代机"],a:1,e:"歼-15是舰载战斗机，歼-20是第五代隐形战斗机。"},
+{c:3,q:"我国军用运输机序列中，主要用于中程战术运输的机型是？",o:["运-20","运-9","AG600","C919"],a:1,e:"运-9主要用途是中程战术运输。"},
+{c:3,q:"ARJ21和C919是我国民航领域的两款重要机型，关于二者的定位区别，正确的是？",o:["ARJ21是干线客机，C919是支线客机","ARJ21是支线客机，C919是干线客机","两者都是干线客机","两者都是支线客机"],a:1,e:"ARJ21是支线民航客机（短途），C919是大型干线客机（国产大飞机代表）。"},
+{c:3,q:"C919在设计上对标国际主流窄体干线客机，其客舱通道类型是？",o:["宽体双通道","窄体单通道","三层客舱","全货运舱"],a:1,e:"C919属于窄体单通道客机，与波音737、空客A320同级别。"},
+{c:3,q:"C919在国际客机分类中属于哪种级别？",o:["支线客机","大型干线窄体单通道客机","宽体双层客机","超音速客机"],a:1,e:"C919是我国自主研制的大型干线客机，属于窄体单通道。"},
+{c:3,q:"我国一款大型水陆两栖飞机兼具救援和灭火功能。该机型是？",o:["运-9","运-20","AG600","C919"],a:2,e:"AG600专属用途为大型水陆两栖救援灭火。"},
+{c:3,q:"关于初教-6和教练-10（猎鹰），以下对比正确的是？",o:["初教-6是高级教练机，教练-10是初级教练机","初教-6是初级教练机，教练-10是超音速高级教练机","两者都是初级教练机","两者都是超音速教练机"],a:1,e:"初教-6是初级教练机，教练-10（猎鹰）是超音速高级教练机。"},
+{c:3,q:"教练-10（猎鹰）在教练机体系中的定位是？",o:["初级活塞式教练机","超音速高级教练机","货运教练机","舰载预警教练机"],a:1,e:"教练-10（猎鹰）属于超音速高级教练机。"},
+{c:3,q:"以下四款我国军机中，属于第三代主战战斗机的是？",o:["歼-15","歼-10","歼-16","歼-20"],a:1,e:"歼-10是我国首款自主研制的第三代主战战斗机。"},
+{c:3,q:"以下四款我国军机中，具备舰载起降能力的是？",o:["歼-10","歼-15","歼-16","歼-20"],a:1,e:"歼-15是我国首款舰载固定翼战斗机。"},
+{c:3,q:"以下四款我国军机中，有'炸弹卡车'之称的是？",o:["歼-10","歼-15","歼-16","歼-20"],a:2,e:"歼-16有'炸弹卡车'之称。"},
+{c:3,q:"以下四款我国军机中，属于第五代隐形战斗机的是？",o:["歼-10","歼-15","歼-16","歼-20"],a:3,e:"歼-20是我国自主研发的第五代隐形战斗机。"},
+{c:3,q:"以下四款我国机型中，主要用于中程战术运输的是？",o:["运-9","运-20","AG600","C919"],a:0,e:"运-9主要用途是中程战术运输。"},
+{c:3,q:"以下四款我国机型中，属于支线民航客机的是？",o:["C919","ARJ21","AG600","运-9"],a:1,e:"ARJ21是我国研制的经典支线民航客机。"},
+{c:3,q:"以下四款我国机型中，属于大型干线客机的是？",o:["ARJ21","C919","AG600","初教-6"],a:1,e:"C919是我国自主研制的大型干线客机。"},
+{c:3,q:"以下四款我国机型中，专属用途为大型水陆两栖救援灭火的是？",o:["C919","ARJ21","AG600","运-20"],a:2,e:"AG600专属用途为大型水陆两栖救援灭火。"},
+{c:3,q:"以下四款我国机型中，属于初级教练机的是？",o:["初教-6","教练-10","歼-10","运-9"],a:0,e:"初教-6是我国经典的初级教练机。"},
+{c:3,q:"某航空爱好者看到一架标注'猎鹰'的飞机，其正式编号应为？",o:["初教-6","教练-8","教练-10","教练-9"],a:2,e:"教练-10（猎鹰）属于超音速高级教练机。"},
+{c:3,q:"如果需要对比C919和ARJ21的航线定位，正确的表述是？",o:["C919飞短途支线，ARJ21飞长途干线","C919是干线客机（大飞机），ARJ21是支线客机（短途）","两者定位完全相同","C919是货机，ARJ21是客机"],a:1,e:"C919是大型干线客机，ARJ21是支线民航客机，定位不同。"},
+{c:3,q:"歼-10、歼-15、歼-16、歼-20四款战机中，具备舰载能力的和具备五代隐身能力的分别是？",o:["歼-10和歼-15","歼-15和歼-20","歼-16和歼-20","歼-10和歼-20"],a:1,e:"歼-15是舰载战斗机，歼-20是第五代隐形战斗机。"},
+{c:3,q:"初教-6和教练-10分别属于教练机体系中的哪个层级？",o:["初教-6为高级，教练-10为初级","初教-6为初级，教练-10为超音速高级","两者均为初级","两者均为高级"],a:1,e:"初教-6是初级教练机，教练-10是超音速高级教练机。"},
+
+// ---------- （已合并至第三章） ----------
+{c:3,q:"人类动力飞行的起点始于一对兄弟的发明。他们的名字和代表作是？",o:["爱迪生——电灯","莱特兄弟——'飞行者一号'","特斯拉——交流电机","冯如——冯如二号"],a:1,e:"世界首架载人动力飞机为莱特兄弟发明的'飞行者一号'。"},
+{c:3,q:"'飞行者一号'的首飞日期至今被作为人类航空诞生日纪念，该日期是？",o:["1903年12月17日","1905年6月1日","1899年12月17日","1910年3月8日"],a:0,e:"首飞时间为1903年12月17日。"},
+{c:3,q:"航空史考试中常考一个首飞地点。'飞行者一号'升空的地方是美国哪个州？",o:["北卡罗来纳州的基蒂霍克","加利福尼亚州旧金山","纽约长岛","得克萨斯州休斯顿"],a:0,e:"首飞地点在美国北卡罗来纳州的基蒂霍克（Kitty Hawk）。"},
+{c:3,q:"运-5是我国航空史上一款经典机型，从其双翼结构特征推断，其主要用途是？",o:["超音速空战","通用运输（农业、跳伞等）","远程国际客运","高空战略侦察"],a:1,e:"运-5是国产经典通用运输机，为双翼机，常用于农业、跳伞等。"},
+{c:3,q:"某通航公司需要采购一架用于农林作业和跳伞训练的飞机，以下最适合的国产机型是？",o:["C919","运-5","歼-10","空客A380"],a:1,e:"运-5常用于农业、跳伞等通用领域，是国产经典双翼运输机。"},
+{c:3,q:"在客机分类中，波音737和空客A320的共同点是？",o:["都是宽体远程客机","都是窄体机、主流干线客机","都是支线客机","都是超音速客机"],a:1,e:"波音737和空客A320都是窄体机、主流干线客机，是同级别竞争对手。"},
+{c:3,q:"波音787与波音737在客机级别上的主要区别是？",o:["737是宽体远程，787是窄体短程","737是窄体干线，787是宽体远程干线","两者级别相同","787是支线客机"],a:1,e:"波音737是窄体机主流干线，波音787是宽体机远程干线。"},
+{c:3,q:"从客舱布局来看，空客A380与空客A320最显著的区别是？",o:["A380是单层窄体，A320是双层宽体","A380是全双层宽体超大型客机，A320是窄体单通道","两者布局相同","A380是支线客机"],a:1,e:"空客A380是全双层宽体机、超大型远程客机；A320是窄体单通道。"},
+{c:3,q:"某飞行学校需要采购一架用于培训的轻型民用直升机，以下最合适的选择是？",o:["波音737","罗宾逊R44","运-5","F-16"],a:1,e:"罗宾逊R44是经典轻型民用直升机，主要用于飞行培训、私人飞行等。"},
+{c:3,q:"直升机相比固定翼飞机最核心的差异优势是？",o:["飞行速度更快","垂直起降、灵活机动","载客量更大","飞行高度更高"],a:1,e:"直升机的核心特点是垂直起降、灵活机动，不需要跑道。"},
+{c:3,q:"关于客机、运输机、直升机三类航空器的功能定位，正确的是？",o:["三者功能完全重叠","客机载客、运输机载货、直升机垂直起降灵活机动","三者都是载客用的","三者在外形和功能上没有区别"],a:1,e:"客机载客、运输机载货、直升机垂直起降灵活机动，三者在外形和功能上有明显区别。"},
+{c:3,q:"某航空公司需开通短途支线航线，在C919和ARJ21之间应选择？",o:["C919，因为它是干线客机","ARJ21，因为它是支线客机，适合短途航线","两者都可以","两者都不适合"],a:1,e:"ARJ21是国产支线客机，主要用于短途航线；C919是干线客机。"},
+{c:3,q:"某航空公司需开通国内主要城市间干线航线，以下最合适的国产机型是？",o:["ARJ21","C919","运-5","罗宾逊R44"],a:1,e:"C919是国产干线客机，是国产大飞机代表，适合干线航线。"},
+{c:3,q:"运-5的双翼布局设计带来的最大飞行特点是？",o:["适合超音速飞行","低速性能好、升力大，适合通航作业","高速巡航效率高","隐身性能好"],a:1,e:"双翼布局低速升力大，运-5因此适合低速通航作业如农用、跳伞。"},
+
+// ---------- （已合并至第一章） ----------
+{c:1,q:"飞机由五大核心部件构成。以下选项中完整且正确的一组是？",o:["机翼、机身、尾翼、起落架、动力装置","机翼、发动机、轮胎、座椅、雷达","机身、机翼、螺旋桨、尾轮、油箱","机翼、机身、起落架、座椅、空调"],a:0,e:"飞机五大核心部件为机翼、机身、尾翼、起落架、动力装置（发动机）。"},
+{c:1,q:"飞机之所以能飞上天，提供升力的核心部件是？",o:["机身","机翼","尾翼","起落架"],a:1,e:"机翼是提供飞行升力的核心部件。"},
+{c:1,q:"乘客和货物之所以能被安全搭载飞行，承载它们的部件是？",o:["机翼","机身","尾翼","发动机"],a:1,e:"机身承载人员、货物和设备。"},
+{c:1,q:"飞机在飞行中能保持姿态和方向稳定，主要依赖哪个部件？",o:["机翼","机身","尾翼","起落架"],a:2,e:"尾翼控制飞行姿态和方向稳定。"},
+{c:1,q:"飞机在地面滑行起降以及停放时，支撑整个飞机重量的部件是？",o:["机翼","机身","尾翼","起落架"],a:3,e:"起落架负责飞机的起飞和降落滑行，支撑飞机在地面停放。"},
+{c:1,q:"飞机能够前进并获得速度，提供推力的部件是？",o:["机翼","机身","尾翼","动力装置（发动机）"],a:3,e:"动力装置为飞机提供推力，使飞机前进。"},
+{c:1,q:"飞行员操纵飞机抬头或低头时，产生俯仰力矩的尾翼部件是？",o:["垂直尾翼","水平尾翼","方向舵","副翼"],a:1,e:"水平尾翼控制飞机的俯仰（抬头/低头）。"},
+{c:1,q:"飞行员需要控制飞机左右方向（偏航）时，起作用的尾翼部件是？",o:["水平尾翼","垂直尾翼","升降舵","副翼"],a:1,e:"垂直尾翼控制飞机的偏航（左右方向）。"},
+{c:1,q:"现代民航客机在地面滑行时方向控制性好、视野佳，其起落架布局是？",o:["后三点式","前三点式","自行车式","滑橇式"],a:1,e:"现代民航客机主流采用前三点式起落架，地面方向操控好。"},
+{c:1,q:"起落架布局的基本形式有两大类，区分依据是主轮与重心的相对位置。这两种是？",o:["前三点式和后三点式","固定式和可收放式","单轮式和多轮式","轮式和滑橇式"],a:0,e:"起落架基本形式有前三点式（主轮在后）和后三点式（主轮在前）。"},
+
+// ---------- （已合并至第二章） ----------
+{c:2,q:"飞机有三个主操纵面，分别控制三种不同的运动。以下完整正确的一组是？",o:["襟翼、缝翼、减速板","副翼、升降舵、方向舵","机翼、尾翼、起落架","高度表、空速表、航向表"],a:1,e:"三大主操纵面为副翼（滚转）、升降舵（俯仰）、方向舵（偏航）。"},
+{c:2,q:"飞行员向左压杆使飞机向左倾斜，此时偏转的主操纵面及其控制的运动是？",o:["升降舵——俯仰","方向舵——偏航","副翼——滚转","扰流板——减速"],a:2,e:"副翼控制飞机滚转（左右倾斜）。"},
+{c:2,q:"飞行员拉杆/推杆使飞机抬头或低头，此时偏转的主操纵面及其控制的运动是？",o:["副翼——滚转","方向舵——偏航","升降舵——俯仰","襟翼——增升"],a:2,e:"升降舵控制飞机俯仰（抬头、低头）。"},
+{c:2,q:"飞行员踩舵使飞机机头左右转向，此时偏转的主操纵面及其控制的运动是？",o:["升降舵——俯仰","方向舵——偏航","副翼——滚转","缝翼——防失速"],a:1,e:"方向舵控制飞机偏航（左右转向）。"},
+{c:2,q:"飞机在起飞和降落时速度较低，需要额外增加升力。此时应使用什么辅助操纵面？",o:["减速板","襟翼和缝翼","方向舵","扰流板"],a:1,e:"襟翼、缝翼安装在机翼上，主要作用是在起飞和降落时增加升力。"},
+{c:2,q:"飞机在飞行中遇到紧急情况需要快速减速或增加下降率，应使用什么辅助装置？",o:["襟翼","缝翼","减速板","升降舵"],a:2,e:"减速板安装在机身或机翼上，飞行中用于减速或下降时增加阻力。"},
+{c:2,q:"一架飞机即将起飞但速度偏低，飞行员为确保安全升空应采取的措施是？",o:["收起所有操纵面","打开襟翼增加升力","展开减速板","偏转方向舵"],a:1,e:"起飞/降落时必须打开襟翼以增加升力，使飞机能在较低速度下起降。"},
+{c:2,q:"飞行中前方出现突发情况需要紧急下降高度，除了收油门外还可使用？",o:["打开襟翼","展开缝翼","使用减速板增加阻力快速下降","拉杆抬头"],a:2,e:"飞行过程中如遇到紧急情况或需快速下降，会使用减速板。"},
+
+// ---------- 第四章：飞行仪表与导航（含原导航仪表） ----------
+{c:4,q:"飞行员在驾驶舱中需要依靠四大基础仪表来了解飞行状态。以下完整正确的一组是？",o:["温度表、压力表、油量表、转速表","高度表、空速表、航向表、升降速度表","时钟、高度表、温度表、GPS","空速表、油量表、高度表、无线电"],a:1,e:"飞行四大基础仪表为高度表、空速表、航向表、升降速度表。"},
+{c:4,q:"飞行员想知道飞机当前飞了多高，应查看哪个仪表？",o:["空速表","高度表","航向表","升降速度表"],a:1,e:"高度表显示飞机飞行时的海拔高度。"},
+{c:4,q:"飞行员需要判断飞机相对于空气飞了多快，应查看哪个仪表？",o:["高度表","空速表","航向表","升降速度表"],a:1,e:"空速表显示飞机相对于空气的飞行速度。"},
+{c:4,q:"飞行员需要确认飞机正朝哪个方向飞，应查看哪个仪表？",o:["高度表","空速表","航向表","升降速度表"],a:2,e:"航向表显示飞机当前的飞行方向（如朝向东南西北）。"},
+{c:4,q:"飞行员想知道飞机正在以多快的速率爬升或下降，应查看哪个仪表？",o:["高度表","空速表","航向表","升降速度表"],a:3,e:"升降速度表显示飞机上升或下降的速率（垂直速度）。"},
+{c:4,q:"飞行中飞行员观察到高度表读数长时间稳定不变，此时飞机最可能处于什么状态？",o:["正在爬升","正在下降","平飞","加速飞行"],a:2,e:"高度数值不变为平飞。"},
+{c:4,q:"飞行中飞行员发现高度表读数持续增大，同时升降速度表指针指向正值。飞机状态是？",o:["平飞","上升","下降","地面滑行"],a:1,e:"高度数值持续变大且升降速度表为正为上升。"},
+{c:4,q:"飞行中飞行员发现高度表读数持续减小，同时升降速度表指针指向负值。飞机状态是？",o:["正在爬升","平飞","正在下降","正在加速"],a:2,e:"高度数值变小且升降速度表为负为下降。"},
+
+// ---------- 第五章：机场标志与标记 ----------
+{c:5,q:"飞行员在跑道上滑跑时，看到的跑道标志主要包括哪些？",o:["中心线、跑道边线、跑道编号","红绿灯、斑马线、停车线","箭头、文字、图案","黄线、绿线、蓝线"],a:0,e:"跑道标志包括中心线、跑道边线、跑道编号。"},
+{c:5,q:"某跑道编号为09，这个数字代表的含义是？",o:["跑道长度900米","跑道磁方位角约90度（朝东）","跑道宽度9米","跑道建造于2009年"],a:1,e:"跑道编号（数字）代表跑道磁方位角的近似值，09即约90度。"},
+{c:5,q:"飞机在地面从停机位滑行至跑道的过程中，引导路线的滑行道标志包括？",o:["中心线、停止线、避让线","红绿灯、箭头、数字","斑马线、双黄线、停车线","白色实线、虚线、箭头"],a:0,e:"滑行道标志包括滑行道中心线、停止线、避让线。"},
+{c:5,q:"在机场地面上，白色标志主要出现在哪个区域？",o:["滑行道","跑道","禁止区域","停机位"],a:1,e:"白色为跑道主标志颜色。"},
+{c:5,q:"在机场地面上，黄色标志主要出现在哪个区域？",o:["跑道","滑行道","禁止区域","等待区"],a:1,e:"黄色为滑行道标志颜色。"},
+{c:5,q:"飞行员在滑行时看到地面有红色标识，这通常意味着什么？",o:["跑道可用区域","滑行道区域","禁止区域/警示区域","正常等待区域"],a:2,e:"红色代表禁止区域/警示区域。"},
+{c:5,q:"飞机滑行至跑道入口前的等待线时，飞行员必须做什么？",o:["加速通过","停留等待管制许可后方可进入跑道","立即转弯脱离","减速到完全停止并关闭发动机"],a:1,e:"等待线前需停留，等待管制许可后方可通行。"},
+{c:5,q:"以下关于机场颜色标识与区域对应关系的表述中，正确的是？",o:["白色→滑行道、黄色→跑道、红色→等待区","白色→跑道、黄色→滑行道、红色→禁止/警示区","白色→禁止区、黄色→跑道、红色→滑行道","白色→等待区、黄色→禁止区、红色→跑道"],a:1,e:"白色为跑道主标志，黄色为滑行道标志，红色为禁止/警示区域。"},
+
+// ---------- 第八章：陆空通话（含原通话用语） ----------
+{c:8,q:"在航空陆空通话中，数字3的读法与日常英语不同，其标准读法是？",o:["Three","Tree","Tres","San"],a:1,e:"航空中数字3读作Tree（区别于日常Three），防止与tree混淆。"},
+{c:8,q:"飞行员在通话中需要读出数字4，按照航空标准读法应说？",o:["Four","Fower","For","Si"],a:1,e:"航空中数字4读作Fower，避免与for混淆。"},
+{c:8,q:"航空通话中数字5的标准读法与日常英语有区别，正确读法是？",o:["Five","Fife","Fiv","Wu"],a:1,e:"航空中数字5读作Fife。"},
+{c:8,q:"在航空通话中，数字9有特殊的读法以避免与其他数字混淆。其读法是？",o:["Nine","Niner","Nin","Jiu"],a:1,e:"航空中数字9读作Niner，避免与德语nein（不）混淆。"},
+{c:8,q:"飞行员在通话中需要读出数字0，按照航空标准读法应说？",o:["Zero","Oh","Null","Ling"],a:0,e:"航空中数字0读作Zero。"},
+{c:8,q:"在ICAO标准字母拼读中，字母A对应的单词是？",o:["Apple","Alpha","Able","Adam"],a:1,e:"字母A的ICAO标准拼读为Alpha。"},
+{c:8,q:"在ICAO标准字母拼读中，字母B对应的单词是？",o:["Boy","Bravo","Beta","Bob"],a:1,e:"字母B的ICAO标准拼读为Bravo。"},
+{c:8,q:"在ICAO标准字母拼读中，字母C对应的单词是？",o:["Charlie","Cat","Charlie-1","Cesar"],a:0,e:"字母C的ICAO标准拼读为Charlie。"},
+{c:8,q:"在ICAO标准字母拼读中，字母D对应的单词是？",o:["Delta","Dog","David","Dan"],a:0,e:"字母D的ICAO标准拼读为Delta。"},
+{c:8,q:"航空通信中使用的26个字母标准拼读体系是由哪个组织制定的？",o:["国际航空运输协会（IATA）","国际民航组织（ICAO）","美国联邦航空局（FAA）","欧洲航空安全局（EASA）"],a:1,e:"航空26个字母标准拼读由国际民航组织（ICAO）制定。"},
+{c:8,q:"航班号CCA123在标准陆空通话中应如何拼读？",o:["直接逐个读字母和数字C-C-A-1-2-3","使用ICAO字母拼读+航空数字读法：Charlie-Charlie-Alpha-One-Two-Tree","用中文读'国航一二三'","简写为CA123"],a:1,e:"航班号应使用ICAO字母拼读+航空数字规范拼读。"},
+{c:8,q:"跑道号RWY 18中的「18」在通话中传达的信息是？",o:["跑道长度1800米","跑道磁方位角约180度（正南方向）","跑道宽度18米","跑道编号第18号"],a:1,e:"跑道号中的数字代表跑道磁方位角的近似值，18即约180度（正南方向）。"},
+
+// ---------- 第九章：专业英文词汇 ----------
+{c:9,q:"在航空英语中，「Aircraft」一词的含义是？",o:["航空港","飞机/航空器","航空公司","航空管制"],a:1,e:"Aircraft意为飞机/航空器。"},
+{c:9,q:"飞行员在英文手册中看到「Wing」，它指的是飞机的哪个部件？",o:["机身","机翼","尾翼","起落架"],a:1,e:"Wing意为机翼。"},
+{c:9,q:"塔台指令中提到「Runway」，飞行员应将其理解为？",o:["滑行道","跑道","停机坪","航站楼"],a:1,e:"Runway意为跑道。"},
+{c:9,q:"仪表上显示缩写「ALT」，它代表的飞行参数是？",o:["Altitude（高度）","Alternative（备选）","Latitude（纬度）","Always（始终）"],a:0,e:"ALT代表Altitude（高度）。"},
+{c:9,q:"仪表上显示缩写「SPD」，它代表的飞行参数是？",o:["Spread（展开）","Speed（速度）","Special（特殊）","Spend（花费）"],a:1,e:"SPD代表Speed（速度）。"},
+{c:9,q:"航行图上标注「RWY」，这个缩写代表的含义是？",o:["Runway（跑道）","Railway（铁路）","Right Way（正确方向）","Rainway（排水道）"],a:0,e:"RWY代表Runway（跑道）。"},
+{c:9,q:"航行图上标注「TXWY」，这个缩写代表的含义是？",o:["Taxiway（滑行道）","Textway（文本通道）","Throughway（通道）","Timeway（时间通道）"],a:0,e:"TXWY代表Taxiway（滑行道）。"},
+{c:9,q:"飞行手册中出现单词「Altitude」，它的中文意思是？",o:["速度","高度","航向","态度"],a:1,e:"Altitude意为高度。"},
+
+// ---------- 第六章：空气动力学原理 ----------
+{c:6,q:"伯努利原理描述了流体速度与压强之间的关系。其核心结论是？",o:["流速越快，压强越大","流速越快，压强越小","流速与压强无关","流速越慢，压强越小"],a:1,e:"伯努利原理：流体（空气）流速越快，压强越小。"},
+{c:6,q:"机翼上表面弯曲、下表面较平，空气流过时上下表面产生压强差。这一现象产生的力及方向是？",o:["向下的重力","向上的升力","向前的推力","向后的阻力"],a:1,e:"机翼上表面空气流速快压强小，下表面压强大，产生向上的升力。"},
+{c:6,q:"飞机在飞行中同时受到四种力的作用。以下完整正确的一组是？",o:["升力、重力、推力、阻力","升力、重力、推力、摩擦力","升力、重量、推力、引力","推力、阻力、升力、向心力"],a:0,e:"飞行四力为升力（向上）、重力（向下）、推力（向前）、阻力（向后）。"},
+{c:6,q:"当飞机的升力等于重力、推力等于阻力时，飞机处于什么飞行状态？",o:["加速爬升","平飞（匀速直线）","减速下降","协调转弯"],a:1,e:"四力平衡时飞机平飞（匀速直线飞行）。"},
+{c:6,q:"飞行员增加发动机推力而保持其他条件不变，推力大于阻力时飞机将？",o:["高度增加","速度增加","高度降低","开始转弯"],a:1,e:"推力和阻力决定速度。推力大于阻力时飞机加速。"},
+{c:6,q:"飞行员保持速度不变但减小迎角（其他条件不变），升力和重力的关系变化会导致？",o:["飞机速度增加","飞机高度降低（升力减小）","飞机高度增加","飞机开始转弯"],a:1,e:"升力和重力决定高度。减小迎角使升力减小，升力小于重力时飞机下降。"},
+{c:6,q:"以下因素中，哪一项对机翼升力没有直接影响？",o:["飞行速度","机翼面积","迎角大小","飞机涂装颜色"],a:3,e:"升力影响因素为飞行速度、机翼面积、迎角大小，与飞机颜色无关。"},
+{c:6,q:"在其他条件不变的情况下，在一定范围内增大迎角，升力如何变化？",o:["逐渐减小","逐渐增大","保持不变","先增大后突然消失"],a:1,e:"在一定范围内，迎角越大，升力越大（但超过临界迎角后失速）。"},
+{c:6,q:"飞行中飞机受到的阻力有三种类型。以下完整正确的一组是？",o:["升力阻力、重力阻力、推力阻力","摩擦阻力、压差阻力、诱导阻力","正面阻力、侧面阻力、底部阻力","空气阻力、地面阻力、结构阻力"],a:1,e:"阻力分为摩擦阻力、压差阻力、诱导阻力。"},
+{c:6,q:"诱导阻力是产生升力时不可避免的附带效应。它在什么飞行阶段尤为明显？",o:["高速巡航时","低速飞行时","地面滑行时","高空平飞时"],a:1,e:"诱导阻力是升力产生的附带效应，低速时（大迎角）诱导阻力尤为明显。"},
+{c:6,q:"飞行员不断增大迎角，当超过某个临界值后气流从机翼表面脱离。此时发生的现象及后果是？",o:["升力急剧增加，飞机急速爬升","升力急剧下降，飞机失速","发动机自动停车","飞机自动改平"],a:1,e:"超过临界迎角时气流分离，升力急剧下降，导致失速。"},
+{c:6,q:"关于「失速」的本质，以下理解正确的是？",o:["失速就是发动机突然停止运转","失速是因迎角过大导致升力不足，飞机掉落","失速是飞行速度太慢导致的","失速只在起飞时发生"],a:1,e:"失速是升力不足导致掉落，不等于发动机停车。迎角过大是主因。"},
+{c:6,q:"飞机在高速飞行时表面与空气产生摩擦，由此产生的阻力类型是？",o:["压差阻力","摩擦阻力","诱导阻力","波阻"],a:1,e:"摩擦阻力由空气与飞机表面的摩擦产生。"},
+{c:6,q:"飞机外形不够流线化时，前方高压区与后方涡流区之间的压力差产生的阻力是？",o:["摩擦阻力","压差阻力","诱导阻力","干扰阻力"],a:1,e:"压差阻力由飞机形状产生的前后压力差造成。"},
+
+// ---------- 第七章：领航知识 ----------
+{c:7,q:"飞行员查看仪表发现机头正指向090度（正东），但受侧风影响实际地面轨迹偏向100度。机头指向方向的专业术语是？",o:["航迹","航向","偏流","地速"],a:1,e:"航向（Heading）是机头指向方向。"},
+{c:7,q:"飞机受侧风影响后，在地面留下的实际飞行轨迹与机头指向方向不同。这个实际轨迹的专业术语是？",o:["航向","航迹","偏流","空速"],a:1,e:"航迹（Track）是飞机实际在地面留下的飞行轨迹。"},
+{c:7,q:"飞机航向为090度但航迹为100度，二者之间存在10度偏差。这个偏差角的专业术语及成因是？",o:["偏流——由侧风引起","航向——由推力变化引起","迎角——由俯仰引起","坡度——由滚转引起"],a:0,e:"偏流是受侧风影响，航向与航迹之间的夹角。"},
+{c:7,q:"飞机相对于空气的飞行速度称为空速。飞机相对于地面的飞行速度称为？",o:["真空速","地速","指示空速","当量空速"],a:1,e:"地速是飞机相对于地面的速度。"},
+{c:7,q:"某飞机空速为300km/h，遇到50km/h的顶风。其地速为？",o:["350km/h","300km/h","250km/h","200km/h"],a:2,e:"顶风时地速=空速-风速=300-50=250km/h。"},
+{c:7,q:"某飞机空速为300km/h，遇到50km/h的顺风。其地速为？",o:["350km/h","300km/h","250km/h","150km/h"],a:0,e:"顺风时地速=空速+风速=300+50=350km/h。"},
+{c:7,q:"飞机在巡航中遭遇较强的左侧风，以下对飞行影响的描述正确的是？",o:["地速增大","地速减小","飞机偏航偏离预定航迹","升力增加"],a:2,e:"侧风导致飞机偏航偏离预定航迹。"},
+{c:7,q:"基础领航中，地速与空速和风速之间的简单换算公式是？",o:["地速 = 空速 × 风速","地速 = 空速 ± 风速","地速 = 空速 ÷ 风速","地速 = 空速 - 高度"],a:1,e:"基础领航计算：地速 = 空速 ± 风速（顶风减、顺风加）。"},
+{c:7,q:"飞行员通过观察地面上的河流、山脉、道路等特征物来确定飞机位置。这种领航方法称为？",o:["推测领航","地标领航","无线电领航","惯性领航"],a:1,e:"地标领航是通过看地面特征物来确定位置。"},
+{c:7,q:"飞行员根据罗盘航向、飞行速度和已飞行时间来推算当前位置。这种领航方法称为？",o:["地标领航","推测领航","卫星领航","天文领航"],a:1,e:"推测领航是根据罗盘、速度、时间推算位置。"},
+{c:7,q:"顶风飞行时，关于空速和地速的大小关系，正确的是？",o:["地速 > 空速","地速 < 空速","地速 = 空速","无法判断"],a:1,e:"顶风时地速 = 空速 - 风速，因此地速 < 空速。"},
+{c:7,q:"顺风飞行时，关于空速和地速的大小关系，正确的是？",o:["地速 > 空速","地速 < 空速","地速 = 空速","无法判断"],a:0,e:"顺风时地速 = 空速 + 风速，因此地速 > 空速。"},
+
+// ---------- （已合并至第四章） ----------
+{c:4,q:"某飞机上最古老的导航仪表利用地球磁场来指示方向。该仪表是？",o:["GPS接收机","磁罗盘","VOR接收机","惯性基准系统"],a:1,e:"磁罗盘利用地磁原理指向磁北。"},
+{c:4,q:"现代飞机上能提供精确经纬度定位的卫星导航系统是？",o:["VOR","ILS","GPS","ADF"],a:2,e:"GPS是卫星定位系统，提供精确经纬度定位。"},
+{c:4,q:"VOR是航空导航中常用的无线电导航设备。其中文全称是？",o:["甚高频全向信标","甚低频导航系统","视觉全向信标","甚高频定向雷达"],a:0,e:"VOR是甚高频全向信标。"},
+{c:4,q:"飞行员利用VOR设备可以获得什么导航信息？",o:["飞机的精确经纬度","飞机相对于地面VOR台的方位","飞机的飞行高度","飞机的空速"],a:1,e:"VOR测量飞机相对于地面台的方位。"},
+{c:4,q:"在低能见度条件下，引导飞机对准跑道进行精密进近着陆的系统是？",o:["VOR","GPS","ILS","ADF"],a:2,e:"ILS是仪表着陆系统（精密进近系统）。"},
+{c:4,q:"ILS的中文名称及其在飞行中的主要用途是？",o:["惯性导航系统——巡航定位","仪表着陆系统——低能见度下引导对准跑道着陆","国际定位系统——全球定位","仪表飞行系统——仪表指示"],a:1,e:"ILS引导飞机在低能见度下对准跑道，是精密进近系统。"},
+{c:4,q:"飞行员利用两个不同方位的VOR台，两条方位线的交点可以确定什么？",o:["飞机的飞行高度","飞机的精确位置（交叉定位）","飞机的速度","飞机的油量"],a:1,e:"利用两个VOR台可以交叉定位，确定飞机的精确位置。"},
+{c:4,q:"ILS主要在飞行的哪个阶段发挥作用？",o:["巡航阶段","起飞滑跑阶段","进场进近（着陆）阶段","地面滑行阶段"],a:2,e:"ILS用于进场导航，引导飞机在低能见度下对准跑道着陆。"},
+{c:4,q:"飞行员在导航仪表上观察到CDI（航道偏离指示器）指针偏左，这表示什么？",o:["飞机速度偏慢","飞机实际位置偏右于设定航线，需向左修正","发动机故障","油量不足"],a:1,e:"CDI指针偏转可判断飞机实际位置与设定航线的偏差，偏左表示飞机偏右需向左修正。"},
+{c:4,q:"飞行员需要修正航向偏差时，常用的操纵方法是？",o:["调整发动机推力","压坡度（倾斜转弯）修正航向","放下起落架增加阻力","打开减速板减速"],a:1,e:"航向修正常用方法是压坡度修正航向。"},
+
+// ---------- （已合并至第八章） ----------
+{c:8,q:"飞行员在遭遇严重危及生命的紧急情况时，应在无线电通话中连续呼叫三遍的词语是？",o:["Pan-pan","Mayday","Roger","Wilco"],a:1,e:"Mayday是遇险呼叫，表示面临生命危险的紧急情况，连呼三遍。"},
+{c:8,q:"飞行员遇到紧急但尚无立即生命危险的情况时，应在通话中使用的词语是？",o:["Mayday","Pan-pan","Roger","Read back"],a:1,e:"Pan-pan表示紧急情况，但尚无立即的生命危险。"},
+{c:8,q:"标准陆空通话的正确流程顺序是？",o:["许可申请→状态汇报→复述指令→指令接收","状态汇报→许可申请→指令接收→复述指令","指令接收→状态汇报→许可申请→复述指令","复述指令→状态汇报→许可申请→指令接收"],a:1,e:"标准流程为：状态汇报→许可申请→指令接收→复述指令。"},
+{c:8,q:"飞机在跑道上准备起飞时，负责发出起飞许可的管制单位是？",o:["区域管制中心","塔台（Tower）","进近管制","地面管制"],a:1,e:"塔台负责地面/起飞管制。"},
+{c:8,q:"飞机从巡航高度下降准备进近着陆时，负责引导的管制单位是？",o:["塔台","进近管制","区域管制","地面管制"],a:1,e:"进近管制负责进近引导。"},
+{c:8,q:"管制员发出指令后要求飞行员「Read back」，其目的是？",o:["浪费时间拖延","确保飞行员听懂并确认指令内容，防止误解","例行公事无实际意义","让管制员休息"],a:1,e:"复述指令是为了确保飞行员听懂并确认指令内容，防止误解。"},
+{c:8,q:"飞行员收到管制指令后回复「Roger」，这句话的意思是？",o:["照办","收到","请求复述","拒绝"],a:1,e:"Roger表示收到。"},
+{c:8,q:"飞行员回复「Wilco」表示的意思是？",o:["收到","照办（Will Comply）","复述","请求"],a:1,e:"Wilco表示照办（Will Comply）。"},
+{c:8,q:"管制员要求飞行员「Read back」，这个词在通话中的含义是？",o:["收到","照办","复述（重复指令确认）","请求"],a:2,e:"Read back代表复述，要求飞行员复述收到的指令。"},
+{c:8,q:"关于Mayday和Pan-pan的优先级区别，正确的是？",o:["没有区别，都是紧急呼叫","Mayday面临生命危险（最高优先级），Pan-pan为紧急但暂无生命危险","Mayday比Pan-pan级别低","Pan-pan比Mayday级别高"],a:1,e:"Mayday面临生命危险（最高优先级），Pan-pan为紧急情况但暂无生命危险。"},
+
+// ---------- （已合并至第九章） ----------
+{c:9,q:"GPS是现代航空中不可或缺的导航工具。其英文全称的中文含义是？",o:["全球定位系统","全球导航系统","地面定位系统","通用飞行系统"],a:0,e:"GPS是Global Positioning System，全球定位系统。"},
+{c:9,q:"仪表上显示「VS」，这个缩略语代表的飞行参数是？",o:["Very Slow（很慢）","Vertical Speed（升降速度）","Visual Signal（视觉信号）","Vector Speed（矢量速度）"],a:1,e:"VS代表Vertical Speed，升降速度。"},
+{c:9,q:"飞行计划中标注「HDG 090」，其中HDG代表的含义是？",o:["Height（高度）","Heading（航向）","Holding（等待）","Hard（困难）"],a:1,e:"HDG代表Heading，航向。HDG 090即航向90度（正东）。"},
+{c:9,q:"Aerodynamics是航空理论的基础学科。其中文意思是？",o:["航空工程","空气动力学","航空管制","航空运输"],a:1,e:"Aerodynamics意为空气动力学。"},
+{c:9,q:"Navigation在飞行领域中指代的专业活动是？",o:["飞机制造","导航/领航","航空管制","通信联络"],a:1,e:"Navigation意为导航/领航。"},
+{c:9,q:"以下缩略语与含义的对应关系中，存在错误的是？",o:["GPS——全球定位系统","VOR——甚高频全向信标","ILS——仪表着陆系统","VS——飞行速度"],a:3,e:"VS代表Vertical Speed（升降速度），不是飞行速度。"},
+{c:9,q:"在陆空通话中，「Roger」和「Wilco」的区别是？",o:["完全相同，可以互换","Roger表示收到，Wilco表示照办","Roger表示照办，Wilco表示收到","两者都表示拒绝指令"],a:1,e:"Roger表示收到，Wilco表示照办（Will Comply），语义不同。"},
+{c:9,q:"以下哪组缩略语全部属于导航相关范畴？",o:["GPS、VOR、ILS","ALT、SPD、RWY","TXWY、RWY、ALT","SPD、HDG、VS"],a:0,e:"GPS（全球定位系统）、VOR（甚高频全向信标）、ILS（仪表着陆系统）均属于导航相关缩略语。"},
+// ====== 辽宁省国防体育锦标赛·战斗机模拟飞行笔答题（新增） ======
+{c:1,q:"塞斯纳172采用上单翼+机翼上反角设计，对于初级飞行训练最核心的优势是？",o:["最大平飞速度更快","具备固有横向静稳定性、失速特性温和、下方目视观察视野优秀","可以进行超音速飞行训练","机翼支持折叠收纳"],a:1,e:"上单翼+上反角设计赋予飞机固有的横向静稳定性，失速时表现温和，且下单翼布局为飞行员提供更好的下方视野观察。"},
+{c:3,q:"YF-17原型机最终演变为F/A-18大黄蜂，当年它的竞标对手是？",o:["F-14雄猫","YF-16战隼","A-7海盗攻击机","F-4鬼怪"],a:1,e:"YF-17与YF-16参与了美国轻型战斗机（LWF）竞标，YF-16胜出成为F-16，YF-17后来发展为F/A-18大黄蜂。",trap:true},
+{c:7,q:"红牛特技飞行比赛中，机体碰撞赛道充气障碍立柱统一判罚标准为？",o:["固定加时3秒","固定加时10秒","两次警告后淘汰","成绩按80%折算计分"],a:1,e:"红牛特技飞行赛规则中，触碰充气障碍立柱统一罚时10秒，这是标准化的处罚措施。"},
+{c:2,q:"飞机起飞阶段小角度放出襟翼，主要作用是？",o:["降低飞行阻力提升极速","增大机翼弯度，提升低速升力系数，降低离地速度","改变航向稳定性","减少发动机耗油"],a:1,e:"起飞时放下少量襟翼可增大机翼弯度（camber），提高升力系数Cl，使飞机在较低速度下即可获得足够升力离地。"},
+{c:4,q:"民航黑匣子一共包含两台记录仪，分别是？",o:["发动机记录仪、GPS轨迹记录仪","飞行数据记录仪FDR、驾驶舱语音记录仪CVR","乘客录音记录仪、气象记录仪","高度记录仪、航向记录仪"],a:1,e:"民航黑匣子由飞行数据记录仪（FDR, Flight Data Recorder）和驾驶舱语音记录仪（CVR, Cockpit Voice Recorder）组成。"},
+{c:3,q:"苏-33舰载战斗机对应的北约标准代号是？",o:["Flanker-A","Flanker-D（海侧卫）","Fulcrum","Blackjack"],a:1,e:"苏-27系列北约代号Flanker（侧卫），苏-33作为舰载衍生型号被命名为Flanker-D，俗称'海侧卫'。苏-27为Flanker-B，苏-35为Flanker-E。",trap:true},
+{c:4,q:"塞斯纳172经典基础目视飞行仪表六件套，不包含以下哪一件仪表？",o:["姿态地平仪","转弯侧滑仪","GPS卫星导航显示屏","升降速度表"],a:2,e:"经典六件套仪表包括：空速表、高度表、姿态地平仪、转弯侧滑仪、升降速度表、磁罗盘。GPS卫星显示屏不属于传统六件套。",trap:true},
+{c:7,q:"红牛竞赛赛道设置起飞入口限速规则，核心目的是？",o:["统一比赛基准，防止高速冲撞障碍物引发重大安全事故","刻意拉长比赛用时增加观赏性","区分飞行员技术等级","匹配飞机固定燃油消耗标准"],a:1,e:"限速规则的目的是确保所有选手以相近的安全速度进入赛段，防止高速失控撞击障碍物造成严重事故。"},
+{c:3,q:"歼-11BS双座型号主要的定位是？",o:["舰载教练机","重型双座战斗教练机，兼顾战术训练与多用途作战","远程战略侦察机","电子战专用战机"],a:1,e:"歼-11BS是歼-11系列的双座型号，定位为重型双座战斗机/教练机，既可用于飞行员换装训练，也可执行制空和对地等多用途作战任务。",trap:true},
+{c:1,q:"苏-33机翼折叠机构除了缩小甲板占地面积，还需要兼顾？",o:["超音速机动气动外形密封","机翼内部油路、电路、操纵连杆一体化转接","隐身外形拼接设计","空中自动折叠展开功能"],a:1,e:"舰载机机翼折叠不仅是机械折叠，还需保证折叠处内部燃油管路、液压线路、电气线路和操纵连杆能够同步可靠转接，不影响飞行安全。"},
+// ====== 追加题目（第一批5道） ======
+{c:2,q:"超音速飞行时，飞机重心位置的变化主要影响以下哪项操纵特性？",o:["方向舵响应速度","纵向静稳定性与配平阻力","起落架收放时机","燃油消耗速率"],a:1,e:"重心位置直接影响纵向静稳定性：重心靠前稳定性增强但配平阻力增大，重心靠后稳定性减弱但阻力减小，超音速飞行时需特别注意重心管理。"},
+{c:6,q:"飞机接近音速飞行时，激波导致阻力急剧增大的现象称为？",o:["失速","音障","地面效应","涡扇效应"],a:1,e:"音障是飞机接近音速时激波形成导致阻力急剧增大的现象。突破音障后阻力系数反而会有所下降。"},
+{c:3,q:"世界首款实用化第四代战斗机（美标，具备隐身、超音速巡航、超机动、传感器融合）是？",o:["F-15鹰式","F-22猛禽","苏-27侧卫","阵风战斗机"],a:1,e:"F-22猛禽是世界首款服役的第四代战斗机（美标），具备隐身、超音速巡航、超机动和传感器融合四大特征。"},
+{c:4,q:"平视显示器（HUD）相比传统仪表最核心的优势是？",o:["显示颜色更丰富","飞行员无需低头即可读取关键飞行参数，保持对外观察","可以替代所有仪表","耗电量更低"],a:1,e:"HUD将关键飞行参数投射到飞行员正前方的透明显示屏上，使飞行员无需低头查看仪表即可获取信息，大幅提升飞行安全性。"},
+{c:6,q:"当飞机迎角超过临界迎角后，升力骤降、阻力剧增的现象称为？",o:["超速","失速","尾旋","抖振"],a:1,e:"失速是迎角超过临界迎角后气流分离导致升力骤降的现象。失速不等于发动机停车，任何速度下都可能发生失速。"},
+{c:2,q:"前缘机动襟翼在高速机动时下偏的主要目的是为了？",o:["增大机翼面积提升载弹量","延迟气流分离，提高最大可用迎角","减小雷达反射截面积","降低座舱噪音"],a:1,e:"前缘机动襟翼在高速大迎角机动时下偏，可延迟气流分离，提高最大可用迎角，增强战机机动能力。"},
+{c:3,q:"中国歼-20战斗机采用的隐身设计中，以下哪项不是其主要隐身措施？",o:["进气道S形弯曲遮挡发动机叶片","座舱盖金属镀膜反射雷达波","全机采用吸波涂料","取消所有外挂武器，全部内置弹舱"],a:3,e:"歼-20采用内置弹舱，但非隐身模式下仍可使用外挂点。选项D说取消所有外挂，表述过于绝对。"},
+{c:6,q:"飞机在28000英尺以上高空飞行时，座舱失压后飞行员必须在多少秒内戴上氧气面罩？",o:["5-10秒","15-20秒","30-45秒","60秒以上"],a:0,e:"高空失压后有效意识时间极短，必须在5-10秒内完成氧气面罩佩戴。"},
+{c:4,q:"姿态地平仪显示飞机姿态，若真空泵失效导致姿态仪失灵，应优先参考哪组仪表？",o:["空速表+高度表","转弯侧滑仪+磁罗盘","转速表+排气温度表","燃油量表+液压压力表"],a:1,e:"真空系统失效后姿态地平仪会失灵，应依靠转弯侧滑仪和磁罗盘维持基本参考。"},
+{c:7,q:"特技飞行中，倒飞状态下维持高度需要推杆而非拉杆，其原理是？",o:["倒飞时升降舵反向工作","倒飞时迎角定义与正飞相反，需推杆使机翼产生向上的升力分量","重力方向改变","发动机推力方向改变"],a:1,e:"倒飞时参考坐标系未变，但升力方向变为向下，需推杆使机翼产生向上的升力分量来维持高度。"},
+{c:2,q:"鸭式布局（如歼-10、欧洲台风）相比传统布局，以下描述中存在误区的是？",o:["鸭翼可提供额外升力","大迎角时鸭翼产生的涡流可延缓主机翼气流分离","鸭式布局天然具备更好的隐身性能","鸭翼偏转可辅助纵向操纵"],a:2,e:"鸭式布局的鸭翼会增加雷达反射截面积，隐身性能通常不如无鸭翼的传统布局。"},
+{c:6,q:"喷气发动机加力燃烧室工作时的显著特征是？",o:["油耗降低50%","推力大幅提升但油耗急剧增加，尾喷口可见明显火焰","发动机噪音显著降低","仅用于降落减速"],a:1,e:"加力燃烧室可大幅提升推力，但油耗可达军用最大推力的2-3倍，夜间可见明显尾焰。"},
+{c:3,q:"以下哪款战斗机是世界上首款服役的第五代战斗机（美标第四代）？",o:["F-117夜鹰","F-22猛禽","B-2幽灵","苏-57"],a:1,e:"F-22猛禽于2005年服役，是世界首款服役的第五代战斗机。F-117是攻击机而非战斗机。"},
+{c:4,q:"TCAS空中防撞系统在检测到冲突时，给飞行员的指令是？",o:["自行判断并操纵","显示爬升或下降指令，飞行员必须立即执行","自动接管飞机操纵","仅发出声音告警"],a:1,e:"TCAS II会发出Resolution Advisory，明确指示爬升或下降，飞行员必须立即执行，即使与ATC指令相反。"},
+{c:1,q:"战斗机座舱盖在紧急情况下可通过爆破螺栓弹射抛盖，触发条件是？",o:["飞行员主动按下抛盖按钮即可","弹射座椅启动后自动触发，或手动应急抛盖","必须地面维护人员远程控制","座舱盖玻璃破碎后自动触发"],a:1,e:"现代战斗机弹射座椅系统会在弹射程序启动时自动先抛盖，也可通过手动应急手柄单独抛盖。"}
+];
+
+const CHAPTERS = {
+  1:"一、飞机结构与材料",
+  2:"二、操纵面与飞行操纵原理",
+  3:"三、航空史与著名机型",
+  4:"四、飞行仪表与导航",
+  5:"五、机场标志与标记",
+  6:"六、空气动力学原理",
+  7:"七、领航知识",
+  8:"八、陆空通话",
+  9:"九、专业英文词汇"
+};
+
+// ====== 标记状态 (localStorage持久化) ======
+let markedQuestions = new Set(); // 存储被标记的题目原始索引
+
+function loadMarked(){
+  try{
+    const data = localStorage.getItem(getMarkedKey());
+    if(data) markedQuestions = new Set(JSON.parse(data));
+  }catch(e){ markedQuestions = new Set(); }
+}
+
+function saveMarked(){
+  try{
+    localStorage.setItem(getMarkedKey(), JSON.stringify(Array.from(markedQuestions)));
+  }catch(e){}
+  // 同步到服务端
+  syncUserDataToServer('marks');
+}
+
+function toggleMark(origIdx){
+  if(markedQuestions.has(origIdx)) markedQuestions.delete(origIdx);
+  else markedQuestions.add(origIdx);
+  saveMarked();
+}
+function isMarked(origIdx){
+  return markedQuestions.has(origIdx);
+}
+
+function clearAllMarks(){
+  if(!confirm('确定要清除所有标记的题目吗？此操作不可撤销。')) return;
+  markedQuestions.clear();
+  saveMarked();
+  // saveMarked 已包含服务端同步
+  renderReview();
+}
+
+// ====== 状态 ======
+let currentIdx = 0;
+let userAnswers = [];
+let startTime = null;
+let activeQuestions = [];   // 当前刷题的题目数组（可能是全部或某章节子集）
+let activeIndices = [];     // 对应QUESTIONS中的原始索引
+let quizScope = '';         // 当前刷题范围描述
+let selectedChapter = 0;    // 当前选择的章节（0=全部）
+
+// ====== 历史记录管理 (localStorage) ======
+
+function getHistory(){
+  try{
+    const data = localStorage.getItem(getHistoryKey());
+    return data ? JSON.parse(data) : [];
+  }catch(e){ return []; }
+}
+
+function saveHistory(history){
+  try{
+    localStorage.setItem(getHistoryKey(), JSON.stringify(history));
+  }catch(e){}
+}
+
+function addHistoryRecord(score, correct, wrong, skipped, timeMin, total, scope){
+  const history = getHistory();
+  const pct = total > 0 ? Math.round(correct/total*100) : 0;
+  history.push({
+    score: pct,           // 百分比分数（0-100），用于趋势图对比
+    correct: correct,
+    wrong: wrong,
+    skipped: skipped,
+    total: total,
+    scope: scope,
+    time: timeMin,
+    date: new Date().toLocaleString('zh-CN',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})
+  });
+  // 最多保留50条
+  if(history.length > 50) history.shift();
+  saveHistory(history);
+  // 同步到服务端
+  syncUserDataToServer('history');
+  return history;
+}
+
+function clearHistory(){
+  if(!confirm('确定要清除所有历史成绩记录吗？此操作不可撤销。')) return;
+  localStorage.removeItem(getHistoryKey());
+  // 同步清空到服务端
+  syncUserDataToServer('history');
+  renderResultTrend();
+  renderStartTrend();
+}
+
+// ====== 绘制趋势图 (Canvas) ======
+function drawTrendChart(canvasId, history){
+  const canvas = document.getElementById(canvasId);
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  
+  // 高DPI适配
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  const W = rect.width;
+  const H = rect.height;
+  
+  ctx.clearRect(0, 0, W, H);
+  
+  if(history.length === 0){
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '14px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('暂无历史记录，完成首次测验后这里将显示趋势图', W/2, H/2);
+    return;
+  }
+  
+  // 边距
+  const padL = 50, padR = 30, padT = 30, padB = 50;
+  const chartW = W - padL - padR;
+  const chartH = H - padT - padB;
+  
+  // 绘制网格和Y轴
+  ctx.strokeStyle = '#e2e8f0';
+  ctx.lineWidth = 1;
+  ctx.font = '11px sans-serif';
+  ctx.fillStyle = '#64748b';
+  ctx.textAlign = 'right';
+  ctx.textBaseline = 'middle';
+  
+  const ySteps = 5;
+  for(let i = 0; i <= ySteps; i++){
+    const y = padT + chartH - (chartH / ySteps) * i;
+    const val = Math.round((100 / ySteps) * i);
+    ctx.beginPath();
+    ctx.moveTo(padL, y);
+    ctx.lineTo(W - padR, y);
+    ctx.stroke();
+    ctx.fillText(val, padL - 8, y);
+  }
+  
+  // 及格线
+  const passY = padT + chartH - (chartH / 100) * 60;
+  ctx.strokeStyle = '#fbbf24';
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([5, 4]);
+  ctx.beginPath();
+  ctx.moveTo(padL, passY);
+  ctx.lineTo(W - padR, passY);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#d97706';
+  ctx.font = '10px sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('及格线 60', padL + 4, passY - 8);
+  
+  // 数据点
+  const n = history.length;
+  const xStep = n > 1 ? chartW / (n - 1) : 0;
+  const points = history.map((h, i) => ({
+    x: n > 1 ? padL + xStep * i : padL + chartW / 2,
+    y: padT + chartH - (chartH / 100) * h.score,
+    score: h.score
+  }));
+  
+  // 渐变填充区域
+  if(n >= 2){
+    const grad = ctx.createLinearGradient(0, padT, 0, padT + chartH);
+    grad.addColorStop(0, 'rgba(26,86,219,0.25)');
+    grad.addColorStop(1, 'rgba(26,86,219,0.02)');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, padT + chartH);
+    points.forEach(p => ctx.lineTo(p.x, p.y));
+    ctx.lineTo(points[n-1].x, padT + chartH);
+    ctx.closePath();
+    ctx.fill();
+  }
+  
+  // 折线
+  ctx.strokeStyle = '#1a56db';
+  ctx.lineWidth = 2.5;
+  ctx.lineJoin = 'round';
+  ctx.beginPath();
+  points.forEach((p, i) => {
+    if(i === 0) ctx.moveTo(p.x, p.y);
+    else ctx.lineTo(p.x, p.y);
+  });
+  ctx.stroke();
+  
+  // 数据点和标签
+  points.forEach((p, i) => {
+    const isLatest = i === n - 1;
+    const radius = isLatest ? 6 : 4;
+    
+    // 外圈
+    ctx.fillStyle = '#fff';
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, radius + 2, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // 内圈
+    ctx.fillStyle = isLatest ? '#0ea5e9' : '#1a56db';
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // 分数标签
+    ctx.fillStyle = '#1e293b';
+    ctx.font = isLatest ? 'bold 13px sans-serif' : 'bold 11px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText(p.score + '分', p.x, p.y - 10);
+    
+    // 次数标签
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '10px sans-serif';
+    ctx.textBaseline = 'top';
+    ctx.fillText('第' + (i + 1) + '次', p.x, padT + chartH + 8);
+  });
+  
+  // X轴
+  ctx.strokeStyle = '#cbd5e1';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(padL, padT + chartH);
+  ctx.lineTo(W - padR, padT + chartH);
+  ctx.stroke();
+}
+
+// ====== 渲染结果页趋势 ======
+function renderResultTrend(){
+  const history = getHistory();
+  
+  // 统计行
+  const statsRow = document.getElementById('trendStatsRow');
+  if(history.length === 0){
+    statsRow.innerHTML = '';
+  }else{
+    const scores = history.map(h => h.score);
+    const best = Math.max(...scores);
+    const avg = Math.round(scores.reduce((a,b)=>a+b,0) / scores.length);
+    const latest = scores[scores.length - 1];
+    statsRow.innerHTML = `
+      <div class="trend-stat attempts"><div class="val">${history.length}</div><div class="lbl">测验次数</div></div>
+      <div class="trend-stat best"><div class="val">${best}</div><div class="lbl">最高分</div></div>
+      <div class="trend-stat avg"><div class="val">${avg}</div><div class="lbl">平均分</div></div>
+      <div class="trend-stat latest"><div class="val">${latest}</div><div class="lbl">本次/最近</div></div>
+    `;
+  }
+  
+  // 绘制图表
+  drawTrendChart('trendChart', history);
+  
+  // 历史记录表
+  const histDiv = document.getElementById('trendHistory');
+  if(history.length === 0){
+    histDiv.innerHTML = '';
+    return;
+  }
+  let html = '<table><thead><tr><th>次数</th><th>日期</th><th>范围</th><th>分数</th><th>对/错/未答</th><th>用时</th><th>变化</th></tr></thead><tbody>';
+  history.forEach((h, i) => {
+    let badgeCls = h.score >= 75 ? 'high' : (h.score >= 60 ? 'mid' : 'low');
+    let delta = '';
+    if(i > 0){
+      const diff = h.score - history[i-1].score;
+      if(diff > 0) delta = `<span class="delta-arrow up">▲ +${diff}</span>`;
+      else if(diff < 0) delta = `<span class="delta-arrow down">▼ ${diff}</span>`;
+      else delta = `<span class="delta-arrow flat">→ 0</span>`;
+    }else{
+      delta = '<span class="delta-arrow flat">—</span>';
+    }
+    html += `<tr>
+      <td>第${i+1}次</td>
+      <td>${h.date}</td>
+      <td style="font-size:11px;color:var(--text-muted);">${h.scope || '全部'}</td>
+      <td><span class="score-badge ${badgeCls}">${h.score}分</span></td>
+      <td>${h.correct}/${h.wrong}/${h.skipped}${h.total?'/'+h.total:''}</td>
+      <td>${h.time}分钟</td>
+      <td>${delta}</td>
+    </tr>`;
+  });
+  html += '</tbody></table>';
+  histDiv.innerHTML = html;
+}
+
+// ====== 渲染开始页趋势 ======
+function renderStartTrend(){
+  const history = getHistory();
+  const container = document.getElementById('startTrendContent');
+  
+  if(history.length === 0){
+    container.innerHTML = `
+      <div class="trend-empty">
+        <div class="icon">📊</div>
+        <div>完成首次测验后，这里将展示您的成绩趋势图</div>
+      </div>
+    `;
+    return;
+  }
+  
+  const scores = history.map(h => h.score);
+  const best = Math.max(...scores);
+  const avg = Math.round(scores.reduce((a,b)=>a+b,0) / scores.length);
+  const latest = scores[scores.length - 1];
+  
+  let html = `
+    <div class="trend-stats-row">
+      <div class="trend-stat attempts"><div class="val">${history.length}</div><div class="lbl">测验次数</div></div>
+      <div class="trend-stat best"><div class="val">${best}</div><div class="lbl">最高分</div></div>
+      <div class="trend-stat avg"><div class="val">${avg}</div><div class="lbl">平均分</div></div>
+      <div class="trend-stat latest"><div class="val">${latest}</div><div class="lbl">最近成绩</div></div>
+    </div>
+    <canvas id="startTrendChart"></canvas>
+  `;
+  container.innerHTML = html;
+  
+  // 延迟绘制，等待DOM渲染
+  setTimeout(() => drawTrendChart('startTrendChart', history), 50);
+}
+
+// ====== 渲染章节选择按钮 ======
+function renderChapterButtons(){
+  const container = document.getElementById('chapButtons');
+  // 统计每章题数
+  const counts = {};
+  QUESTIONS.forEach(q => { counts[q.c] = (counts[q.c]||0)+1; });
+  
+  let html = `<button class="chap-btn chap-all" onclick="startQuiz(0)">
+    <span class="chap-name">🌐 全部章节（随机打乱）</span>
+    <span class="chap-cnt">${QUESTIONS.length}题</span>
+  </button>`;
+  
+  for(let ch = 1; ch <= 9; ch++){
+    if(counts[ch]){
+      html += `<button class="chap-btn" onclick="startQuiz(${ch})">
+        <span class="chap-name">${CHAPTERS[ch]}</span>
+        <span class="chap-cnt">${counts[ch]}题</span>
+      </button>`;
+    }
+  }
+  container.innerHTML = html;
+}
+
+// ====== Fisher-Yates 洗牌 ======
+function shuffleArray(arr){
+  const a = arr.slice();
+  for(let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// ====== 开始 ======
+function startQuiz(chapter){
+  selectedChapter = chapter;
+  // 筛选题目
+  if(chapter === 0){
+    // 全部章节：打乱题目顺序
+    const all = QUESTIONS.map((q,i) => ({...q, _origIdx: i}));
+    const shuffled = shuffleArray(all);
+    activeQuestions = shuffled;
+    activeIndices = shuffled.map(q => q._origIdx);
+    quizScope = '全部章节（打乱顺序）';
+  }else{
+    activeQuestions = QUESTIONS.filter(q => q.c === chapter).map((q,i,arr) => {
+      const origIdx = QUESTIONS.indexOf(q);
+      return {...q, _origIdx: origIdx};
+    });
+    activeIndices = activeQuestions.map(q => q._origIdx);
+    quizScope = CHAPTERS[chapter];
+  }
+  
+  currentIdx = 0;
+  userAnswers = new Array(activeQuestions.length).fill(null);
+  startTime = Date.now();
+  
+  document.getElementById('startPage').classList.add('hidden');
+  document.getElementById('quizPage').classList.remove('hidden');
+  document.getElementById('userBar').classList.add('hidden');
+  document.getElementById('totalNum').textContent = activeQuestions.length;
+  
+  renderQuestion();
+  renderGrid();
+}
+
+// ====== 渲染题目 ======
+function renderQuestion(){
+  const q = activeQuestions[currentIdx];
+  const body = document.getElementById('quizBody');
+  const letters = ['A','B','C','D'];
+  let optsHtml = q.o.map((opt,i)=>{
+    let cls = userAnswers[currentIdx]===i ? 'selected' : '';
+    return `<div class="option ${cls}" onclick="selectAnswer(${i})">
+      <div class="opt-label">${letters[i]}</div>
+      <span>${opt}</span>
+    </div>`;
+  }).join('');
+  
+  let trapTag = q.trap ? '<span class="q-trap">⚠️陷阱题</span>' : '';
+  const origIdx = activeIndices[currentIdx];
+  const isQMarked = isMarked(origIdx);
+  const markBtnHtml = `<button class="mark-btn ${isQMarked?'marked':''}" onclick="toggleMarkCurrent()">
+    <span class="star">${isQMarked?'⭐':'☆'}</span>${isQMarked?'已标记':'标记'}
+  </button>`;
+  
+  body.innerHTML = `
+    <div class="q-header">
+      <div class="q-number">第 ${currentIdx+1} 题 / 共 ${activeQuestions.length} 题${trapTag}</div>
+      ${markBtnHtml}
+    </div>
+    <div class="q-text">${q.q}</div>
+    <div class="options">${optsHtml}</div>
+    <div class="quiz-nav">
+      <button class="btn-nav" onclick="prevQuestion()" ${currentIdx===0?'disabled':''}>上一题</button>
+      ${currentIdx===activeQuestions.length-1 
+        ? '<button class="btn-nav submit-btn" onclick="submitQuiz()">提交答卷</button>'
+        : '<button class="btn-nav" onclick="nextQuestion()">下一题</button>'}
+    </div>
+  `;
+  
+  // 更新顶部
+  document.getElementById('curNum').textContent = currentIdx+1;
+  document.getElementById('curChapter').textContent = CHAPTERS[q.c];
+  document.getElementById('progressBar').style.width = ((currentIdx+1)/activeQuestions.length*100)+'%';
+  const answered = userAnswers.filter(a=>a!==null).length;
+  document.getElementById('answeredCount').textContent = answered;
+  document.getElementById('sidebarAnswered').textContent = answered + '/' + activeQuestions.length;
+  
+  renderGrid();
+  // 滚动主区域到顶部
+  document.querySelector('.quiz-main').scrollTo({top:0,behavior:'smooth'});
+}
+
+function toggleMarkCurrent(){
+  const origIdx = activeIndices[currentIdx];
+  toggleMark(origIdx);
+  renderQuestion();
+  renderGrid();
+}
+
+function selectAnswer(i){
+  userAnswers[currentIdx] = i;
+  renderQuestion();
+}
+
+function prevQuestion(){
+  if(currentIdx>0){currentIdx--;renderQuestion();}
+}
+function exitQuiz(){
+  if(confirm('确定要退出答题吗？当前进度不会保存。')){
+    document.getElementById('quizPage').classList.add('hidden');
+    document.getElementById('startPage').classList.remove('hidden');
+    document.getElementById('userBar').classList.remove('hidden');
+    currentIdx=0; userAnswers=[]; startTime=null;
+    activeQuestions=[]; activeIndices=[]; currentShuffle=[]; selectedChapter=0;
+  }
+}
+function nextQuestion(){
+  if(currentIdx<activeQuestions.length-1){currentIdx++;renderQuestion();}
+}
+
+function goToQuestion(i){
+  currentIdx = i;
+  renderQuestion();
+}
+
+// ====== 题号网格（侧边栏） ======
+function renderGrid(){
+  const grid = document.getElementById('qGrid');
+  let html = activeQuestions.map((q,i)=>{
+    let cls = 'sidebar-dot';
+    if(userAnswers[i]!==null) cls += ' answered';
+    if(i===currentIdx) cls += ' current';
+    if(isMarked(activeIndices[i])) cls += ' marked';
+    return `<div class="${cls}" onclick="goToQuestion(${i})">${i+1}</div>`;
+  }).join('');
+  grid.innerHTML = html;
+}
+
+// ====== 提交 ======
+function submitQuiz(){
+  const unanswered = userAnswers.filter(a=>a===null).length;
+  let msg = `确定要提交答卷吗？`;
+  if(unanswered>0) msg = `您还有 ${unanswered} 道题未作答，确定提交吗？`;
+  if(!confirm(msg)) return;
+  showResult();
+}
+
+// ====== 结果 ======
+function showResult(){
+  let correct=0,wrong=0,skipped=0;
+  userAnswers.forEach((a,i)=>{
+    if(a===null) skipped++;
+    else if(a===activeQuestions[i].a) correct++;
+    else wrong++;
+  });
+  const total = activeQuestions.length;
+  const pct = Math.round(correct/total*100);
+  
+  document.getElementById('quizPage').classList.add('hidden');
+  document.getElementById('resultPage').classList.remove('hidden');
+  document.getElementById('userBar').classList.remove('hidden');
+  
+  // 动态满分显示：显示"X / Y题"
+  document.getElementById('finalScore').textContent = correct;
+  document.getElementById('scoreMax').textContent = '/ ' + total + '题';
+  document.getElementById('scoreCircle').style.setProperty('--pct', pct+'%');
+  document.getElementById('rightCount').textContent = correct;
+  document.getElementById('wrongCount').textContent = wrong;
+  document.getElementById('skipCount').textContent = skipped;
+  
+  const mins = Math.max(1, Math.round((Date.now()-startTime)/60000));
+  document.getElementById('usedTime').textContent = mins;
+  
+  // 保存历史记录（用百分比分数，便于不同题量间对比）
+  const history = getHistory();
+  const prevScore = history.length > 0 ? history[history.length-1].score : null;
+  addHistoryRecord(pct, correct, wrong, skipped, mins, total, quizScope);
+  
+  let title,msg;
+  if(pct>=90){title='🏆 优秀！';msg=`${pct}分！您对航空知识掌握非常扎实，恭喜通过！`;}
+  else if(pct>=75){title='👍 良好！';msg=`${pct}分，基础掌握不错，部分细节还需巩固。`;}
+  else if(pct>=60){title='✏️ 及格';msg=`${pct}分，刚好过关，建议重点复习错题解析。`;}
+  else{title='📚 继续努力';msg=`${pct}分，还有很多知识点需要加强学习，加油！`;}
+  
+  // 如果有进步，添加提示
+  if(prevScore !== null){
+    const diff = pct - prevScore;
+    if(diff > 0) msg += ` 比上次提高了 ${diff} 分，继续加油！`;
+    else if(diff < 0) msg += ` 比上次下降了 ${Math.abs(diff)} 分，加油追赶！`;
+    else msg += ' 与上次成绩持平，争取突破！';
+  }
+  
+  document.getElementById('resultTitle').textContent = title;
+  document.getElementById('resultMsg').textContent = msg;
+  
+  renderReview();
+  
+  // 渲染趋势图（延迟等待DOM显示）
+  setTimeout(() => renderResultTrend(), 100);
+}
+
+// ====== 解析 ======
+let currentFilter = 'all';
+function renderReview(){
+  const list = document.getElementById('reviewList');
+  const letters = ['A','B','C','D'];
+  let html = '';
+  activeQuestions.forEach((q,i)=>{
+    const ua = userAnswers[i];
+    let status, statusLabel, statusColor;
+    if(ua===null){status='skipped';statusLabel='未答';statusColor='#64748b';}
+    else if(ua===q.a){status='correct';statusLabel='正确';statusColor='#16a34a';}
+    else{status='wrong';statusLabel='错误';statusColor='#dc2626';}
+    
+    const isQMarked = isMarked(q._origIdx);
+    
+    let optsHtml = q.o.map((opt,j)=>{
+      let cls='review-opt';
+      if(j===q.a) cls+=' correct-opt';
+      if(j===ua && ua!==q.a) cls+=' user-wrong';
+      if(j===ua && ua===q.a) cls+=' user-right';
+      let mark='';
+      if(j===q.a) mark=' ✓ 正确答案';
+      if(j===ua && ua!==q.a) mark=' ✗ 你的选择';
+      return `<div class="${cls}"><strong>${letters[j]}.</strong> ${opt}${mark}</div>`;
+    }).join('');
+    
+    let trapTag = q.trap ? ' ⚠️陷阱' : '';
+    html += `
+      <div class="review-item ${status}${isQMarked?' marked-review':''}" data-status="${status}" data-marked="${isQMarked?1:0}">
+        <div class="review-q">
+          <span class="tag" style="background:${statusColor};color:#fff;">${statusLabel}</span>
+          ${isQMarked?'<span class="mark-tag">⭐ 已标记</span>':''}
+          <button class="review-mark-btn ${isQMarked?'marked':''}" onclick="toggleReviewMark(${q._origIdx})">
+            <span class="star">${isQMarked?'⭐':'☆'}</span>${isQMarked?'已标记':'标记'}
+          </button>
+          <span style="color:var(--text-muted);font-size:12px;">第${i+1}题 · ${CHAPTERS[q.c]}${trapTag}</span><br>
+          ${q.q}
+        </div>
+        <div class="review-options">${optsHtml}</div>
+        <div class="review-explain"><span class="label">💡 解析：</span>${q.e}</div>
+      </div>
+    `;
+  });
+  list.innerHTML = html;
+}
+
+function filterReview(f){
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.review-item').forEach(item=>{
+    if(f==='all') item.style.display='';
+    else if(f==='marked') item.style.display = item.dataset.marked==='1' ? '' : 'none';
+    else item.style.display = item.dataset.status===f ? '' : 'none';
+  });
+}
+
+function toggleReviewMark(origIdx){
+  toggleMark(origIdx);
+  renderReview();
+  // 如果当前在回顾页，重新应用筛选
+  if(currentFilter==='marked'){
+    document.querySelectorAll('.review-item').forEach(item=>{
+      item.style.display = item.dataset.marked==='1' ? '' : 'none';
+    });
+  }
+}
+
+function scrollToReview(){
+  document.getElementById('reviewSection').scrollIntoView({behavior:'smooth'});
+}
+
+function retryChapter(){
+  document.getElementById('resultPage').classList.add('hidden');
+  startQuiz(selectedChapter);
+}
+
+function restartQuiz(){
+  document.getElementById('resultPage').classList.add('hidden');
+  document.getElementById('startPage').classList.remove('hidden');
+  renderStartTrend();
+}
+
+// ====== 页面初始化 ======
+window.addEventListener('load', function(){
+  refreshCaptcha();
+  initSliderCaptcha();
+  if(getCurrentUser()){
+    showApp();
+  } else {
+    showLoginPage();
+  }
+  // 回车键支持
+  document.getElementById('loginCode').addEventListener('keydown', function(e){
+    if(e.key==='Enter') doPhoneLogin();
+  });
+  document.getElementById('loginPhone').addEventListener('keydown', function(e){
+    if(e.key==='Enter') sendCode();
+  });
+});
+
+
+// ====== 管理员功能 ======
+async function renderAdminPanel(){
+  const searchEl = document.getElementById('adminSearch');
+  const keyword = searchEl ? searchEl.value.trim() : '';
+
+  // 从服务端获取所有用户
+  let users = {};
+  try {
+    const data = await apiCall('/api/users');
+    if(data.success && data.users){
+      data.users.forEach(u => { users[u.phone] = u; });
+    }
+  } catch(e) { console.error('获取用户列表失败:', e); }
+
+  const phones = Object.keys(users).filter(p => p !== ADMIN_PHONE);
+  const filtered = keyword ? phones.filter(p => {
+    const userInfo = users[p];
+    const usernameMatch = userInfo && userInfo.username && userInfo.username.includes(keyword);
+    const phoneMatch = p.includes(keyword);
+    return usernameMatch || phoneMatch;
+  }) : phones;
+
+  // 统计
+  let totalUsers = phones.length;
+  let totalQuizzes = 0;
+  let totalQuestions = 0;
+
+  // 从服务端获取每个用户的答题历史
+  const userHistories = {};
+  for(const phone of filtered){
+    try {
+      const hData = await apiCall('/api/history/' + phone);
+      if(hData.success && hData.history){
+        userHistories[phone] = hData.history;
+        totalQuizzes += hData.history.length;
+        hData.history.forEach(h => { totalQuestions += (h.total || 0); });
+      } else {
+        userHistories[phone] = [];
+      }
+    } catch(e) { userHistories[phone] = []; }
+  }
+
+  // 渲染统计卡片
+  const statsEl = document.getElementById('adminStats');
+  if(statsEl){
+    statsEl.innerHTML = `
+      <div class="admin-stat-card"><div class="val">${totalUsers}</div><div class="lbl">总用户数</div></div>
+      <div class="admin-stat-card"><div class="val">${totalQuizzes}</div><div class="lbl">总测验次数</div></div>
+      <div class="admin-stat-card"><div class="val">${totalQuestions}</div><div class="lbl">总答题数</div></div>
+      <div class="admin-stat-card"><div class="val">${totalUsers > 0 ? Math.round(totalQuizzes/totalUsers*10)/10 : 0}</div><div class="lbl">人均测验次数</div></div>
+    `;
+  }
+
+  // 渲染用户列表
+  const listEl = document.getElementById('adminUserList');
+  if(!listEl) return;
+  if(filtered.length === 0){
+    listEl.innerHTML = '<div class="admin-empty"><div class="icon">📭</div>暂无用户数据</div>';
+    return;
+  }
+
+  listEl.innerHTML = filtered.map(phone => {
+    const userInfo = users[phone];
+    let history = userHistories[phone] || [];
+    const masked = phone.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2');
+    const username = userInfo && userInfo.username ? userInfo.username : '未命名';
+    const latest = history.length > 0 ? history[history.length-1] : null;
+    const best = history.length > 0 ? Math.max(...history.map(h => h.score || 0)) : null;
+
+    let rows = '';
+    if(history.length === 0){
+      rows = '<div style="padding:20px;text-align:center;color:var(--text-muted);font-size:13px;">暂无测验记录</div>';
+    } else {
+      rows = `
+        <table class="admin-history-table">
+          <thead><tr>
+            <th>序号</th><th>日期</th><th>范围</th><th>题数</th><th>正确率</th><th>分数</th><th>用时</th>
+          </tr></thead>
+          <tbody>
+            ${history.map((h,i) => {
+              const pct = h.total > 0 ? Math.round(h.score/h.total*100) : 0;
+              const cls = pct >= 80 ? 'high' : pct >= 60 ? 'mid' : 'low';
+              return `<tr>
+                <td>${i+1}</td>
+                <td>${h.date || '--'}</td>
+                <td>${h.scope || '全部'}</td>
+                <td>${h.total || 0}</td>
+                <td><span class="admin-score-badge ${cls}">${pct}%</span></td>
+                <td>${h.score || 0}/${h.total || 0}</td>
+                <td>${h.time || '--'}</td>
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    return `
+      <div class="admin-user-card">
+        <div class="admin-user-header" onclick="toggleAdminUser(this)">
+          <div>
+            <span class="phone" style="font-weight:600;">${username}</span>
+            <span style="color:var(--text-muted);font-size:12px;margin-left:8px;">${masked}</span>
+            <span class="count" style="margin-left:12px;">${history.length} 次测验</span>
+            ${best !== null ? `<span class="count" style="margin-left:8px;">最高: ${best}分</span>` : ''}
+          </div>
+          <div class="arrow">▼</div>
+        </div>
+        <div class="admin-user-body">
+          ${rows}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function toggleAdminUser(headerEl){
+  const body = headerEl.nextElementSibling;
+  const arrow = headerEl.querySelector('.arrow');
+  if(body.classList.contains('open')){
+    body.classList.remove('open');
+    arrow.classList.remove('open');
+  } else {
+    body.classList.add('open');
+    arrow.classList.add('open');
+  }
+}
+
+</script>
+</body>
+</html>
