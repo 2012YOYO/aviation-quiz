@@ -28,11 +28,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// 挂载静态文件
-app.use(express.static(path.join(__dirname)));
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'aviation_quiz.html'));
-});
+// 静态文件服务（仅本地开发用，Vercel 自动处理静态文件）
 
 // ===== 存储层 =====
 let redis = null;
@@ -406,6 +402,11 @@ module.exports = app;
 
 // 本地开发启动
 if (require.main === module) {
+  // 本地模式下提供静态文件服务
+  app.use(express.static(path.join(__dirname)));
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'aviation_quiz.html'));
+  });
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
     console.log(`\n========================================`);
