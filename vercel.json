@@ -1,9 +1,3 @@
 {
-  "version": 2,
-  "rewrites": [
-    { "source": "/send-sms", "destination": "/api/index" },
-    { "source": "/verify-sms", "destination": "/api/index" },
-    { "source": "/status", "destination": "/api/index" },
-    { "source": "/api/(.*)", "destination": "/api/index" }
-  ]
+  "version": 2
 }
